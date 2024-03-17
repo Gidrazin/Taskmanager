@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'Frontend/main.css' %}" />
+    <title>Task manager</title>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            {% csrf_token %}
+            <div class="header__inner">
+                <a href="#" class="logo">
+                    <img src="{% static 'Frontend/assets/logo.png' %}" alt="logo">
+                    <span>Task manager</span>
+                </a>
+                <div class="username">{{ department }}</div>
+                <div class="username">{{ first_last_name }}</div>
+            </div>
+        </div>
+    </header>
+    <main class="main">
+        <div class="container">
+            <div id="root"></div>
+        </div>
+    </main>
+    <footer class="footer"></footer>
+    <script defer src="{% static 'Frontend/main.js' %}"></script>
+</body>
+
+</html>

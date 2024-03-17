@@ -1,0 +1,1 @@
+export const hiddenScroll = (flag, bodyRef) => flag ? bodyRef.current.style.overflow = 'hidden' : bodyRef.current.style.overflow = 'visible'
