@@ -133,6 +133,8 @@ class User(AbstractUser):
 
     department = models.ForeignKey(
         DepSubLvl2,
+        blank=True,
+        null=True,
         on_delete=models.PROTECT,
         verbose_name='Подразделение',
     )
