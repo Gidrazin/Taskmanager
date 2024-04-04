@@ -1,0 +1,116 @@
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: #0000008f;
+
+    &__wrapper {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 600px;
+
+        display: flex;
+        flex-direction: column;
+        background-color: $header-color;
+    }
+
+    &__header {
+        background-color: transparent;
+        padding: 20px 0;
+        border-bottom: 1px solid #bca37f;
+    }
+
+    &__header-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__title {
+        margin: 0;
+    }
+
+    &__close {
+        cursor: pointer;
+        padding-top: 4px;
+    }
+
+    &__main {
+        flex-grow: 1;
+
+    }
+
+    &__list {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 30px;
+        list-style: none;
+        margin: 0;
+        padding: 20px 0;
+    }
+
+    &__item-field {
+        padding: 0 10px;
+    }
+
+    &__item {
+        display: flex;
+        align-items: center;
+    }
+
+    &__item-value {
+        flex-grow: 1;
+        outline: none;
+        font-family: inherit;
+        font-size: inherit;
+        border: none;
+        padding: 5px;
+        background-color: #f0e0cc;
+
+        box-sizing: border-box;
+        border: 2px solid transparent;
+        border-radius: 4px;
+        transition: border-color linear 0.3s;
+
+        &:focus {
+            border: 2px solid #bca37f;
+            transition: border-color linear 0.3s;
+        }
+    }
+
+    &__footer {
+        background-color: $footer-color;
+        padding: 20px 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    &__btn {
+        background-color: #685131;
+        padding: 15px 60px;
+        border: 1px solid #7e6a4f;
+        border-radius: 5px;
+        cursor: pointer;
+        color: #fff;
+        transition: background-color ease-in-out 0.3s,
+            color ease-in-out 0.3s;
+        text-transform: uppercase;
+        font-size: 20px;
+
+        &:hover {
+            background-color: $header-color;
+            color: #000;
+            transition: background-color ease-in-out 0.3s,
+                color ease-in-out 0.3s;
+        }
+    }
+}
+
+.modal-container {
+    margin: 0 auto;
+    padding: 0 20px;
+}
