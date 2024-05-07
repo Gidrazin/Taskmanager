@@ -5,9 +5,11 @@ function App() {
     <div className="App">
       <header className="header">
         <a className="logo" href="/">
-          <img src="/images/logo.png" alt="logo" />
+          <img className="logo__img" src="/images/logo.png" alt="logo" />
         </a>
-        <h2 className="fullName">Казанце Захар</h2>
+        <h2 className="fullName">
+          <span>Казанцев Захар</span>
+        </h2>
         <button className="create-btn">Создать работу</button>
       </header>
     </div>

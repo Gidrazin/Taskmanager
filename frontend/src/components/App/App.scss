@@ -1,3 +1,84 @@
 .App {
+  max-width: 1440px;
+  margin: 0 auto;
 
+  .header {
+    display: flex;
+    justify-content: space-between;
+    padding: 40px 0;
+    gap: 25px;
+    color: #000120;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 0;
+    flex-basis: 20%;
+    padding: 15px 0;
+    &::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-image: url("../../../public/images/hex-m.png");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+  }
+
+  .fullName {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 0;
+    flex-basis: 60%;
+    text-align: center;
+    margin: 0;
+    font-size: 49px;
+    &::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-image: url("../../../public/images/hex-l.png");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+  }
+
+  .create-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 0;
+    flex-basis: 20%;
+    padding: 15px 0;
+    font-size: 26px;
+    &::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-image: url("../../../public/images/hex-m.png");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+  }
 }
