@@ -24,12 +24,12 @@
     .create-btn__hexSvg {
       path {
         fill: #6F6D72;
-        transition: fill linear 0.3s;
+        transition: fill linear 0.5s;
         stroke: #E9E8EE; /* Цвет контура */
         stroke-width: 3; /* Ширина контура */
         stroke-dasharray: 680; /* Периметр шестиугольника */
         stroke-dashoffset: 680; /* Начальное смещение контура на длину периметра, чтобы он был невидимым */
-        animation: draw 0.3s linear forwards;
+        animation: draw 0.5s linear forwards;
       }
     }
     @keyframes draw {
