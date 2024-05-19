@@ -1,6 +1,3 @@
-@import "../../var.scss";
-
-
 .App {
   max-width: 1440px;
   margin: 0 auto;
@@ -67,72 +64,8 @@
   .table {
     width: 100%;
     border-spacing: 20px 20px;
-    &__head {
-      &-row {
-        font-size: 22px;
-        text-transform: uppercase;
-        color: #000;
-        height: 42px;
-      }
-      &-ceil {
-        position: relative;
-        &::before {
-          content: "";
-          position: absolute;
-          z-index: -1;
-          top: 0;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          background-image: url("../../../public/images/white-hex.svg");
-          background-size: cover;
-          background-repeat: no-repeat;
-          background-position: center;
-        }
+    
 
-        &:nth-child(1n) {
-          width: 10%;
-        }
-        &:nth-child(2n) {
-          width: 30%;
-        }
-        &:nth-child(3n) {
-          width: 30%;
-        }
-        &:nth-child(4n) {
-          width: 10%;
-        }
-        &:nth-child(5n) {
-          width: 10%;
-        }
-        &:nth-child(6n) {
-          width: 10%;
-        }
-      }
-    }
-
-    &__body {
-      &-row {
-        font-size: 20px;
-        text-transform: uppercase;
-        color: #fff;
-        height: 40px;
-        text-align: center;
-
-        &--announced {
-          background-color: $announced-color;
-        }
-
-        &--inProgress {
-          background-color: $inProgress-color;
-          color: #000;
-        }
-
-        &--done {
-          background-color: $done-color;
-          color: #000;
-        }
-      }
-    }
+    
   }
 }

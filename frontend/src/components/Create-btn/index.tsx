@@ -15,8 +15,8 @@ const CreateBtn = () => {
           id="Rectangle 3"
           d="M35.87 0L251.12 0L287 45L251.12 90L215.25 90L143.5 90L71.75 90L35.87 90L0 45L35.87 0Z"
           
-          fill-opacity="1.000000"
-          fill-rule="nonzero"
+          fillOpacity="1.000000"
+          fillRule="nonzero"
         />
       </svg>
       <span className="create-btn__text">Создать работу</span>

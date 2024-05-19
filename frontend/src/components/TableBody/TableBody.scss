@@ -1,0 +1,24 @@
+@import "../../styles/var.scss";
+.table__body {
+  &-row {
+    font-size: 20px;
+    text-transform: uppercase;
+    color: #fff;
+    height: 40px;
+    text-align: center;
+
+    &--announced {
+      background-color: $announced-color;
+    }
+
+    &--inProgress {
+      background-color: $inProgress-color;
+      color: #000;
+    }
+
+    &--done {
+      background-color: $done-color;
+      color: #000;
+    }
+  }
+}
