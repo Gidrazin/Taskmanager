@@ -1,6 +1,8 @@
 .App {
   max-width: 1440px;
+  min-height: 95vh;
   margin: 0 auto;
+  position: relative;
 
   .header {
     display: flex;

@@ -5,9 +5,12 @@ import TableHead from "../TableHead";
 import { useState, useEffect } from "react";
 import { getTasks } from "../../api";
 import { Task } from "../../types";
+import PaginationBlock from "../PaginationBlock";
 
 function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
+  const [tasksStartRender, setTasksStartTender] = useState(0);
+
   useEffect(() => {
     const getData = async () => {
       const tasksRes = await getTasks();
@@ -31,8 +34,12 @@ function App() {
       <main className="main">
         <table className="table">
           <TableHead />
-          <TableBody tasks={tasks} />
+          <TableBody tasks={tasks} tasksStartRender={tasksStartRender} />
         </table>
+        <PaginationBlock
+          tasks={tasks}
+          setTasksStartRender={setTasksStartTender}
+        />
       </main>
     </div>
   );

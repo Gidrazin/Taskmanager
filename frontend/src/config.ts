@@ -1,0 +1,1 @@
+export const tasksMaxRender = 2 // Число элементов на странице
