@@ -1,7 +1,13 @@
 import "./CreateBtn.scss";
-const CreateBtn = () => {
+import { MouseEventHandler } from "react";
+
+const AddTaskBtn = ({
+  clickHandler,
+}: {
+  clickHandler: MouseEventHandler<HTMLButtonElement>;
+}) => {
   return (
-    <button className="create-btn">
+    <button onClick={clickHandler} className="create-btn">
       <svg
         className="create-btn__hexSvg"
         width="287.000000"
@@ -14,7 +20,6 @@ const CreateBtn = () => {
         <path
           id="Rectangle 3"
           d="M35.87 0L251.12 0L287 45L251.12 90L215.25 90L143.5 90L71.75 90L35.87 90L0 45L35.87 0Z"
-          
           fillOpacity="1.000000"
           fillRule="nonzero"
         />
@@ -23,4 +28,4 @@ const CreateBtn = () => {
     </button>
   );
 };
-export default CreateBtn;
+export default AddTaskBtn;
