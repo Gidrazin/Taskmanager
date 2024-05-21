@@ -19,9 +19,10 @@ const PaginationBlock = ({ tasks, setTasksStartRender }: Props) => {
               colorText: "#E9E8EE",
               colorPrimary: "#E9E8EE",
               colorTextDisabled: "#6F6D72",
-              colorBgTextActive: "#0E1C49",
+              colorBgTextActive: "rgba(14, 28, 73, 0.5)",
               colorBgContainer: "#0E1C49",
               colorPrimaryHover: "E9E8EE",
+              colorBgTextHover: "rgba(14, 28, 73, 1)",
             },
           },
         }}

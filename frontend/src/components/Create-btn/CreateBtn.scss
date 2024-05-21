@@ -8,6 +8,7 @@
   font-size: 26px;
   text-transform: uppercase;
   font-family: "Jura Bold";
+  color: #000120;
   &__hexSvg {
     position: absolute;
     z-index: -1;
@@ -24,9 +25,9 @@
   &:hover {
     .create-btn__hexSvg {
       path {
-        fill: #6F6D72;
+        fill: #6f6d72;
         transition: fill linear 0.5s;
-        stroke: #E9E8EE; /* Цвет контура */
+        stroke: #e9e8ee; /* Цвет контура */
         stroke-width: 3; /* Ширина контура */
         stroke-dasharray: 680; /* Периметр шестиугольника */
         stroke-dashoffset: 680; /* Начальное смещение контура на длину периметра, чтобы он был невидимым */
@@ -35,7 +36,7 @@
     }
     @keyframes draw {
       to {
-        stroke-dashoffset: 0;/* Контур перемещается обратно на 0, показывая его полностью */
+        stroke-dashoffset: 0; /* Контур перемещается обратно на 0, показывая его полностью */
       }
     }
   }

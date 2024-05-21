@@ -1,3 +1,118 @@
 .form {
-  
+  &--overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 5;
+    background-color: rgba(14, 28, 73, 0.3);
+  }
+
+  &__wrapper {
+    position: absolute;
+    width: 400px;
+    z-index: 100;
+    top: 20%;
+    left: calc(50% - 200px);
+    padding: 20px 20px;
+
+    background-color: #dae0ee;
+  }
+
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 30px;
+  }
+
+  &__item {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 10px;
+    margin-bottom: 15px;
+
+    &-field {
+      font-size: 14px;
+      line-height: 27px;
+    }
+
+    &-value {
+      font-family: "Jura Bold";
+      background-color: transparent;
+      border: none;
+      border-bottom: 1px solid #0e1c49;
+      outline: none;
+      padding: 5px 5px;
+
+      color: #0e1c49;
+    }
+  }
+
+  &__title {
+    margin: 0;
+  }
+
+  &__close {
+    padding: 5px;
+    margin-top: 7px;
+    cursor: pointer;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+  }
+
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__btn {
+    font-family: "Jura Bold";
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 0;
+    font-size: 16px;
+    text-transform: uppercase;
+    color: #dae0ee;
+    padding: 10px 15px;
+    transition: color linear 0.5s;
+    &-hexSvg {
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 120px;
+      path {
+        fill: #0e1c49;
+        transition: fill linear 0.2s;
+      }
+    }
+
+    &:hover {
+      color: #000120;
+      transition: color linear 0.3s;
+      .form__btn-hexSvg {
+        path {
+          fill: transparent;
+          transition: fill linear 0.3s;
+          stroke: #000120; /* Цвет контура */
+          stroke-width: 2; /* Ширина контура */
+          stroke-dasharray: 670; /* Периметр шестиугольника */
+          stroke-dashoffset: 670; /* Начальное смещение контура на длину периметра, чтобы он был невидимым */
+          animation: draw 0.5s linear forwards;
+        }
+      }
+    }
+  }
 }

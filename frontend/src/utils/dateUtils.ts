@@ -27,4 +27,9 @@ const dateDiff = (start: Date, end: Date) => {
   return diffDays;
 };
 
-export { dateFormat, dateDiff };
+function getCurrentDateISO(): string {
+  const currentDate = new Date();
+  return currentDate.toISOString();
+}
+
+export { dateFormat, dateDiff, getCurrentDateISO };
