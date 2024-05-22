@@ -7,13 +7,15 @@
     right: 0;
     z-index: 5;
     background-color: rgba(14, 28, 73, 0.3);
+    overflow: auto;
+    
   }
 
   &__wrapper {
     position: absolute;
     width: 400px;
     z-index: 100;
-    top: 20%;
+    top: 10%;
     left: calc(50% - 200px);
     padding: 20px 20px;
 
@@ -27,28 +29,18 @@
   }
 
   &__item {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    gap: 10px;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 
-    &-field {
-      font-size: 14px;
-      line-height: 27px;
+    &-label {
+      display: block;
+      cursor: pointer;
+      margin-bottom: 5px;
+      font-family:  "Jura Bold";
     }
-
-    &-value {
-      font-family: "Jura Bold";
-      background-color: transparent;
-      border: none;
-      border-bottom: 1px solid #0e1c49;
-      outline: none;
-      padding: 5px 5px;
-
-      color: #0e1c49;
+    &-element {
+      margin: 0;
     }
   }
-
   &__title {
     margin: 0;
   }
@@ -63,7 +55,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
+    font-family:  "Jura Bold";
   }
 
   &__footer {
