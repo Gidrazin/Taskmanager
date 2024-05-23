@@ -1,7 +1,7 @@
 import "./App.scss";
 
 import { useState, useEffect } from "react";
-import { getTasks, getThemes, getPerformers, postTask } from "../../api";
+import { getTasks, getThemes, getPerformers } from "../../api";
 import { Performer, Task, Theme } from "../../types";
 
 import AddTaskBtn from "../Create-btn";
@@ -9,6 +9,8 @@ import TableBody from "../TableBody";
 import TableHead from "../TableHead";
 import PaginationBlock from "../PaginationBlock";
 import AddTask from "../Forms/AddTask";
+
+import { notification } from "antd";
 
 function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -20,6 +22,15 @@ function App() {
   const [formType, setFormType] = useState<"addTask" | "updateTask" | null>(
     null
   );
+
+  const [api, contextHolder] = notification.useNotification();
+
+  const openNotification = (type: 'success' | 'error',text: string) => {
+    api[type]({
+      message: text,
+      placement: "bottomLeft",
+    });
+  };
 
   useEffect(() => {
     const getData = async () => {
@@ -33,12 +44,13 @@ function App() {
     };
 
     getData();
-  }, []);
+  }, [formType]);
 
   useEffect(() => {}, []);
 
   return (
     <div className="App">
+      {contextHolder}
       <header className="header">
         <a className="logo" href="/">
           <img className="logo__img" src="/images/logo.png" alt="logo" />
@@ -46,7 +58,11 @@ function App() {
         <h2 className="fullName">
           <span>Казанцев Захар</span>
         </h2>
-        <AddTaskBtn clickHandler={() => {setFormType('addTask')}} />
+        <AddTaskBtn
+          clickHandler={() => {
+            setFormType("addTask");
+          }}
+        />
       </header>
       <main className="main">
         {!formType ? (
@@ -56,6 +72,7 @@ function App() {
             setFormType={setFormType}
             themes={themes}
             performers={performers}
+            openNotification={openNotification}
           />
         )}
         <table className="table">

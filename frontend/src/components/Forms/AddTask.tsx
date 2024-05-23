@@ -18,27 +18,27 @@ interface Props {
   setFormType: Function;
   themes: Theme[];
   performers: Performer[];
+  openNotification: Function;
 }
 
-function AddTask({ setFormType, themes, performers }: Props) {
+function AddTask({ setFormType, themes, performers, openNotification }: Props) {
   const onSubmitHandler = async (values: any) => {
-    // const sendItems: any = {};
-    // Array.from(target.elements)
-    //   .filter((element: any) => !!element.name && !!element.value)
-    //   .forEach((element: any) => (sendItems[element.name] = element.value));
-    // sendItems.start = sendItems.start
-    //   ? dateFormat(sendItems.start).isoDate
-    //   : getCurrentDateISO();
-    // // sendItems.start =
-    // //   dateFormat(sendItems.start).isoDate && getCurrentDateISO();
-    // sendItems.end =
-    //   new Date(sendItems.end).getTime() <=
-    //     new Date(sendItems.start).getTime() && sendItems.end
-    //     ? dateFormat(sendItems.end).isoDate
-    //     : getCurrentDateISO();
-    // sendItems.pages = sendItems.pages ? sendItems.pages : 0;
-    // console.log(sendItems);
-    // await postTask(JSON.stringify(sendItems));
+    const sendItems: any = {};
+
+    sendItems.theme = values.theme;
+    sendItems.title = values.title;
+    sendItems.performer = values.performer;
+    sendItems.report = values.report ? values.report : "";
+    sendItems.end = dateFormat(values.end.$d).isoDate;
+    sendItems.pages = values.pages ? values.pages : 0;
+
+    try {
+      await postTask(JSON.stringify(sendItems));
+      setFormType(null);
+      openNotification("success", "Задача добавлена");
+    } catch (error) {
+      openNotification("error", "Произошла ошибка при добавлении задачи");
+    }
   };
 
   return (
@@ -96,8 +96,9 @@ function AddTask({ setFormType, themes, performers }: Props) {
                 <Form.Item
                   name="theme"
                   rules={[{ required: true, message: "Выберете тему!" }]}
+                  initialValue=""
                 >
-                  <Select defaultValue="">
+                  <Select>
                     <Select.Option value="">--</Select.Option>
                     {themes.map((themeItem, index) => (
                       <Select.Option key={index} value={themeItem.slug}>
@@ -127,8 +128,9 @@ function AddTask({ setFormType, themes, performers }: Props) {
                 <Form.Item
                   name="performer"
                   rules={[{ required: true, message: "Укажите исполнителя!" }]}
+                  initialValue=""
                 >
-                  <Select defaultValue="">
+                  <Select>
                     <Select.Option value="">--</Select.Option>
                     {performers.map((performerItem, index) => (
                       <Select.Option key={index} value={performerItem.username}>
