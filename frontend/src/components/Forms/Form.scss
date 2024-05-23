@@ -88,15 +88,24 @@
         background-color: transparent;
       }
     }
+
+    
   }
+
   &__title {
     margin: 0;
   }
 
   &__close {
-    padding: 5px;
-    margin-top: 7px;
+    padding: 3px;
     cursor: pointer;
+    transform-origin: center center;
+    transform: rotate(0deg);
+    transition: transform linear 0.3s;
+    &:hover {
+      transform: rotate(360deg);
+      transition: transform linear 0.3s;
+    }
   }
 
   &__header {
@@ -142,11 +151,11 @@
 
     &:hover {
       color: #000120;
-      transition: color linear 0.3s;
+      transition: color linear 0.2s;
       .form__btn-hexSvg {
         path {
           fill: transparent;
-          transition: fill linear 0.3s;
+          transition: fill linear 0.2s;
           stroke: #000120; /* Цвет контура */
           stroke-width: 2; /* Ширина контура */
           stroke-dasharray: 670; /* Периметр шестиугольника */
