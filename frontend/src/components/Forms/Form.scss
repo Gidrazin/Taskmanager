@@ -1,3 +1,12 @@
+.ant-select-selector {
+  box-shadow: none !important;
+}
+
+.ant-select-dropdown {
+  background-color: #e9e8ee;
+  border: 1px solid #000120;
+  box-shadow: none;
+}
 .form {
   &--overlay {
     position: fixed;
@@ -8,7 +17,6 @@
     z-index: 5;
     background-color: rgba(14, 28, 73, 0.3);
     overflow: auto;
-    
   }
 
   &__wrapper {
@@ -29,16 +37,56 @@
   }
 
   &__item {
-    margin-bottom: 10px;
-
+    margin-bottom: 15px;
+    .ant-picker-status-error,
+    .ant-input-status-error {
+      background-color: transparent !important;
+      border: none !important;
+      border-bottom: 2px solid #ff4d4f !important;
+      box-shadow: none !important;
+    }
     &-label {
-      display: block;
+      display: inline-block;
       cursor: pointer;
       margin-bottom: 5px;
-      font-family:  "Jura Bold";
+      font-family: "Jura Bold";
+    }
+    .ant-picker-status-error {
+      background-color: transparent !important;
     }
     &-element {
-      margin: 0;
+      background-color: transparent;
+      border: none;
+      border-bottom: 1px solid #0e1c49;
+      color: #000120;
+      &:hover {
+        box-shadow: none;
+        border: none;
+        border-bottom: 2px solid #0e1c49;
+        background-color: transparent;
+      }
+
+      &:focus {
+        box-shadow: none;
+        border: none;
+        border-bottom: 2px solid #0e1c49;
+        background-color: transparent;
+      }
+
+      &:focus-within {
+        box-shadow: none;
+        outline: none;
+        border: none;
+        border-bottom: 2px solid #0e1c49;
+        background-color: transparent;
+      }
+
+      &:active {
+        outline: none;
+        border: none;
+        border-bottom: 2px solid #0e1c49;
+        background-color: transparent;
+      }
     }
   }
   &__title {
@@ -56,7 +104,7 @@
     align-items: center;
     justify-content: space-between;
     margin-bottom: 20px;
-    font-family:  "Jura Bold";
+    font-family: "Jura Bold";
   }
 
   &__footer {

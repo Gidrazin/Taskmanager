@@ -42,7 +42,32 @@ function AddTask({ setFormType, themes, performers }: Props) {
   };
 
   return (
-    <ConfigProvider>
+    <ConfigProvider
+      theme={{
+        components: {
+          Form: {
+            itemMarginBottom: 0,
+          },
+          DatePicker: {
+            presetsMaxWidth: 300,
+          },
+          Select: {
+            selectorBg: "transparent",
+            optionSelectedBg: "#6F6D72",
+            optionSelectedColor: "#E9E8EE",
+            optionActiveBg: "rgba(111, 109, 114, 0.3)",
+          },
+        },
+        token: {
+          fontFamily: "Jura Bold",
+          borderRadius: 0,
+          colorPrimary: "#000120",
+          colorLink: "#000120",
+          colorLinkHover: "rgba(0, 1, 32, 0.5)",
+          colorBorder: "#000120",
+        },
+      }}
+    >
       <div className="form form--overlay">
         <div className="form__wrapper">
           <Form onFinish={(values) => onSubmitHandler(values)}>
@@ -72,7 +97,6 @@ function AddTask({ setFormType, themes, performers }: Props) {
                   Тема:
                 </label>
                 <Form.Item
-                  className="form__item-element"
                   name="theme"
                   rules={[{ required: true, message: "Выберете тему!" }]}
                 >
@@ -92,11 +116,10 @@ function AddTask({ setFormType, themes, performers }: Props) {
                   Наименование
                 </label>
                 <Form.Item
-                  className="form__item-element"
                   name="title"
-                  rules={[{ required: true, message: "Введите наименование" }]}
+                  rules={[{ required: true, message: "Введите наименование!" }]}
                 >
-                  <Input />
+                  <Input className="form__item-element" />
                 </Form.Item>
               </div>
 
@@ -105,9 +128,8 @@ function AddTask({ setFormType, themes, performers }: Props) {
                   Исполнитель
                 </label>
                 <Form.Item
-                  className="form__item-element"
                   name="performer"
-                  rules={[{ required: true, message: "Укажите исполнителя" }]}
+                  rules={[{ required: true, message: "Укажите исполнителя!" }]}
                 >
                   <Select defaultValue="">
                     <Select.Option value="">--</Select.Option>
@@ -127,11 +149,14 @@ function AddTask({ setFormType, themes, performers }: Props) {
                   Окончание
                 </label>
                 <Form.Item
-                  className="form__item-element"
-                  rules={[{ required: true, message: "Укажите дату" }]}
+                  rules={[{ required: true, message: "Укажите дату!" }]}
                   name="end"
                 >
-                  <DatePicker />
+                  <DatePicker
+                    placeholder="ДД.ММ.ГГГГ"
+                    className="form__item-element"
+                    style={{ display: "block" }}
+                  />
                 </Form.Item>
               </div>
 
@@ -139,8 +164,8 @@ function AddTask({ setFormType, themes, performers }: Props) {
                 <label className="form__item-label" htmlFor="report">
                   Листок запуска
                 </label>
-                <Form.Item className="form__item-element" name="report">
-                  <Input />
+                <Form.Item name="report">
+                  <Input className="form__item-element" />
                 </Form.Item>
               </div>
 
@@ -148,8 +173,12 @@ function AddTask({ setFormType, themes, performers }: Props) {
                 <label className="form__item-label" htmlFor="pages">
                   Количество листов
                 </label>
-                <Form.Item className="form__item-element" name="pages">
-                  <InputNumber min={0} />
+                <Form.Item name="pages">
+                  <InputNumber
+                    className="form__item-element"
+                    min={0}
+                    style={{ width: "100%" }}
+                  />
                 </Form.Item>
               </div>
             </div>
