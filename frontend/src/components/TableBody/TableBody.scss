@@ -21,4 +21,13 @@
       color: #000;
     }
   }
+  &-ceil {
+    &--clickable {
+      cursor: pointer;
+      text-decoration: underline;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
 }
