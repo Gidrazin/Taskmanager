@@ -42,18 +42,16 @@ export async function getThemes() {
     return themes
 }
 
-// async function patchTask(id, jsonData) {
-//     const token = document.querySelector('input[name="csrfmiddlewaretoken"]').value
-//     await fetch(`http://${DOMEN}/api/v1/tasks/${id}/`, {
-//         method: 'PATCH',
-//         body: jsonData,
-//         headers: {
-//             "Content-Type": "application/json",
-//             "Authorization": 'Token c5554313e28744fa5475e2ba2f5590380026c1b7',
-//             "X-CSRFToken": token
-//         }
-//     })
-// }
+export async function patchTask(id: any, jsonData: any) {
+
+    await fetch(`http://${BACKEND_DOMEN}/api/v1/tasks/${id}/`, {
+      method: "PATCH",
+      body: jsonData,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+}
 
 export async function postTask(jsonData: any) {
     await fetch(`http://${BACKEND_DOMEN}/api/v1/tasks/`, {

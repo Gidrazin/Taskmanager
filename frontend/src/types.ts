@@ -3,8 +3,8 @@ export interface Task {
   performer: Performer;
   theme: Theme;
   title: string;
-  start: Date;
-  end: Date;
+
+  end: Date | '';
   status: Status;
   report: string;
   pages: number | null;

@@ -8,9 +8,9 @@ import AddTaskBtn from "../Create-btn";
 import TableBody from "../TableBody";
 import TableHead from "../TableHead";
 import PaginationBlock from "../PaginationBlock";
-import AddTask from "../Forms/AddTask";
+import TaskForm from "../Forms/TaskForm";
 
-import { notification } from "antd";
+import { ConfigProvider, notification } from "antd";
 
 function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -19,13 +19,11 @@ function App() {
 
   const [tasksStartRender, setTasksStartTender] = useState(0);
 
-  const [formType, setFormType] = useState<"addTask" | "updateTask" | null>(
-    null
-  );
+  const [appForm, setAppForm] = useState(<></>);
 
   const [api, contextHolder] = notification.useNotification();
 
-  const openNotification = (type: 'success' | 'error',text: string) => {
+  const openNotification = (type: "success" | "error", text: string) => {
     api[type]({
       message: text,
       placement: "bottomLeft",
@@ -44,13 +42,21 @@ function App() {
     };
 
     getData();
-  }, [formType]);
-
-  useEffect(() => {}, []);
+  }, [appForm]);
 
   return (
     <div className="App">
-      {contextHolder}
+      <ConfigProvider
+        theme={{
+          token: {
+            colorBgBase: "#E9E8EE",
+            borderRadius: 0,
+          },
+        }}
+      >
+        {contextHolder}
+      </ConfigProvider>
+
       <header className="header">
         <a className="logo" href="/">
           <img className="logo__img" src="/images/logo.png" alt="logo" />
@@ -60,24 +66,44 @@ function App() {
         </h2>
         <AddTaskBtn
           clickHandler={() => {
-            setFormType("addTask");
+            setAppForm(
+              <TaskForm
+                setAppForm={setAppForm}
+                themes={themes}
+                performers={performers}
+                openNotification={openNotification}
+                formState={{
+                  id: NaN,
+                  theme: { id: NaN, slug: "", title: "" },
+                  title: "",
+                  performer: {
+                    id: NaN,
+                    username: "",
+                    first_name: "",
+                    last_name: "",
+                    ip: "",
+                  },
+                  end: "",
+                  report: "",
+                  pages: null,
+                }}
+              ></TaskForm>
+            );
           }}
         />
       </header>
       <main className="main">
-        {!formType ? (
-          formType === "addTask"
-        ) : (
-          <AddTask
-            setFormType={setFormType}
+        {appForm}
+        <table className="table">
+          <TableHead />
+          <TableBody
             themes={themes}
             performers={performers}
             openNotification={openNotification}
+            setAppForm={setAppForm}
+            tasks={tasks}
+            tasksStartRender={tasksStartRender}
           />
-        )}
-        <table className="table">
-          <TableHead />
-          <TableBody tasks={tasks} tasksStartRender={tasksStartRender} />
         </table>
         <PaginationBlock
           tasks={tasks}

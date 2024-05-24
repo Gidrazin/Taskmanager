@@ -1,7 +1,7 @@
-import { FormEvent, useState } from "react";
-import { dateFormat, getCurrentDateISO } from "../../utils/dateUtils";
-import { postTask } from "../../api";
-import { Theme, Performer } from "../../types";
+import { dateFormat } from "../../utils/dateUtils";
+import { patchTask, postTask } from "../../api";
+import { Task, Theme, Performer } from "../../types";
+import dayjs from "dayjs";
 
 import "./Form.scss";
 import {
@@ -12,16 +12,22 @@ import {
   InputNumber,
   ConfigProvider,
 } from "antd";
-const { RangePicker } = DatePicker;
 
 interface Props {
-  setFormType: Function;
+  setAppForm: Function;
   themes: Theme[];
   performers: Performer[];
   openNotification: Function;
+  formState: Omit<Task, "status">;
 }
 
-function AddTask({ setFormType, themes, performers, openNotification }: Props) {
+export default function TaskForm({
+  setAppForm,
+  themes,
+  performers,
+  openNotification,
+  formState,
+}: Props) {
   const onSubmitHandler = async (values: any) => {
     const sendItems: any = {};
 
@@ -33,11 +39,17 @@ function AddTask({ setFormType, themes, performers, openNotification }: Props) {
     sendItems.pages = values.pages ? values.pages : 0;
 
     try {
-      await postTask(JSON.stringify(sendItems));
-      setFormType(null);
-      openNotification("success", "Задача добавлена");
+      if (formState.id) {
+        await patchTask(formState.id, JSON.stringify(sendItems));
+        openNotification("success", "Задача обновлена");
+      } else {
+        await postTask(JSON.stringify(sendItems));
+        openNotification("success", "Задача добавлена");
+      }
+      setAppForm(<></>);
     } catch (error) {
-      openNotification("error", "Произошла ошибка при добавлении задачи");
+      openNotification("error", "Произошла ошибка");
+      console.log(error)
     }
   };
 
@@ -75,7 +87,7 @@ function AddTask({ setFormType, themes, performers, openNotification }: Props) {
               <h2 className="form__title">Добавление задачи</h2>
               <svg
                 onClick={() => {
-                  setFormType(null);
+                  setAppForm(<></>);
                 }}
                 className="form__close"
                 viewBox="64 64 896 896"
@@ -96,7 +108,7 @@ function AddTask({ setFormType, themes, performers, openNotification }: Props) {
                 <Form.Item
                   name="theme"
                   rules={[{ required: true, message: "Выберете тему!" }]}
-                  initialValue=""
+                  initialValue={formState.theme.slug}
                 >
                   <Select>
                     <Select.Option value="">--</Select.Option>
@@ -116,6 +128,7 @@ function AddTask({ setFormType, themes, performers, openNotification }: Props) {
                 <Form.Item
                   name="title"
                   rules={[{ required: true, message: "Введите наименование!" }]}
+                  initialValue={formState.title}
                 >
                   <Input className="form__item-element" />
                 </Form.Item>
@@ -128,7 +141,7 @@ function AddTask({ setFormType, themes, performers, openNotification }: Props) {
                 <Form.Item
                   name="performer"
                   rules={[{ required: true, message: "Укажите исполнителя!" }]}
-                  initialValue=""
+                  initialValue={formState.performer.username}
                 >
                   <Select>
                     <Select.Option value="">--</Select.Option>
@@ -150,6 +163,7 @@ function AddTask({ setFormType, themes, performers, openNotification }: Props) {
                 <Form.Item
                   rules={[{ required: true, message: "Укажите дату!" }]}
                   name="end"
+                  initialValue={dayjs(formState.end)}
                 >
                   <DatePicker
                     placeholder="ДД.ММ.ГГГГ"
@@ -163,7 +177,7 @@ function AddTask({ setFormType, themes, performers, openNotification }: Props) {
                 <label className="form__item-label" htmlFor="report">
                   Листок запуска
                 </label>
-                <Form.Item name="report">
+                <Form.Item name="report" initialValue={formState.report}>
                   <Input className="form__item-element" />
                 </Form.Item>
               </div>
@@ -172,7 +186,7 @@ function AddTask({ setFormType, themes, performers, openNotification }: Props) {
                 <label className="form__item-label" htmlFor="pages">
                   Количество листов
                 </label>
-                <Form.Item name="pages">
+                <Form.Item name="pages" initialValue={formState.pages}>
                   <InputNumber
                     className="form__item-element"
                     min={0}
@@ -207,5 +221,3 @@ function AddTask({ setFormType, themes, performers, openNotification }: Props) {
     </ConfigProvider>
   );
 }
-
-export default AddTask;

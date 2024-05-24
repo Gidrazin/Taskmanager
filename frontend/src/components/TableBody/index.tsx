@@ -3,13 +3,20 @@ import { Task } from "../../types";
 import { dateFormat } from "../../utils/dateUtils";
 import { getStatus } from "../../utils/getStatus";
 import { tasksMaxRender } from "../../config";
+import TaskForm from "../Forms/TaskForm";
+import { Theme, Performer } from "../../types";
 
 interface Props {
   tasks: Task[];
   tasksStartRender: number;
+  setAppForm: Function
+  themes: Theme[]
+  performers: Performer[]
+  openNotification: Function
 }
 
-const TableBody = ({ tasks, tasksStartRender }: Props) => {
+const TableBody = ({ tasks, tasksStartRender, setAppForm, themes, performers, openNotification }: Props) => {
+  console.log(tasks)
   return (
     <tbody className="table__body">
       {tasks
@@ -26,14 +33,37 @@ const TableBody = ({ tasks, tasksStartRender }: Props) => {
             )}`}
           >
             <td className="table__body-ceil">{task.theme.slug}</td>
-            <td className="table__body-ceil">{task.title}</td>
+            <td
+              onClick={() =>
+                setAppForm(
+                  <TaskForm
+                    setAppForm={setAppForm}
+                    themes={themes}
+                    performers={performers}
+                    openNotification={openNotification}
+                    formState={{
+                      id: task.id,
+                      theme: task.theme,
+                      title: task.title,
+                      performer: task.performer,
+                      end: task.end,
+                      report: task.report,
+                      pages: task.pages,
+                    }}
+                  ></TaskForm>
+                )
+              }
+              className="table__body-ceil"
+            >
+              {task.title}
+            </td>
             <td className="table__body-ceil">
               {task.performer
                 ? task.performer.first_name + " " + task.performer.last_name
                 : ""}
             </td>
             <td className="table__body-ceil">
-              {dateFormat(task.end).tableDate}
+              {task.end && dateFormat(task.end).tableDate}
             </td>
             <td className="table__body-ceil">
               {task.report ? task.report : ""}
