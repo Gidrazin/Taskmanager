@@ -24,7 +24,6 @@ const TableBody = ({
   performers,
   openNotification,
 }: Props) => {
-  console.log(tasks);
   return (
     <tbody className="table__body">
       {tasks
@@ -41,7 +40,7 @@ const TableBody = ({
             )}`}
           >
             <td className="table__body-ceil">{task.theme.slug}</td>
-            <Tooltip title="Редактировать">
+            <Tooltip title={`Редактировать ${task.title}`}>
               <td
                 onClick={() =>
                   setAppForm(

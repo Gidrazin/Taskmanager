@@ -22,6 +22,11 @@
     }
   }
   &-ceil {
+    max-width: 380px;
+    padding: 0 20px;
+    white-space: nowrap;      /* Запретить перенос слов */
+    overflow: hidden;         /* Скрыть текст, который выходит за пределы */
+    text-overflow: ellipsis; 
     &--clickable {
       cursor: pointer;
       text-decoration: underline;
