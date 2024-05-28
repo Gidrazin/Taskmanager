@@ -141,7 +141,7 @@ export default function TaskForm({
                 <Form.Item
                   name="performer"
                   rules={[{ required: true, message: "Укажите исполнителя!" }]}
-                  initialValue={formState.performer.username}
+                  initialValue={formState.performer?.username}
                 >
                   <Select>
                     <Select.Option value="">--</Select.Option>
