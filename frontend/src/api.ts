@@ -1,5 +1,3 @@
-import { Task } from "./types";
-
 const BACKEND_DOMEN = process.env.REACT_APP_BACKEND_DOMEN;
 
 export async function getTasks(
@@ -27,7 +25,7 @@ export async function getTasks(
 // }
 
 export async function getPerformers() {
-    const resPerformers = await fetch(`http://${BACKEND_DOMEN}/api/v1/users/`, {
+    const resPerformers = await fetch(`${BACKEND_DOMEN}/api/v1/users/`, {
       method: "GET",
     });
     const performers = await resPerformers.json()
@@ -35,7 +33,7 @@ export async function getPerformers() {
 }
 
 export async function getThemes() {
-    const resThemes = await fetch(`http://${BACKEND_DOMEN}/api/v1/themes/`, {
+    const resThemes = await fetch(`${BACKEND_DOMEN}/api/v1/themes/`, {
       method: "GET",
     });
     const themes = await resThemes.json()
@@ -44,7 +42,7 @@ export async function getThemes() {
 
 export async function patchTask(id: any, jsonData: any) {
 
-    await fetch(`http://${BACKEND_DOMEN}/api/v1/tasks/${id}/`, {
+    await fetch(`${BACKEND_DOMEN}/api/v1/tasks/${id}/`, {
       method: "PATCH",
       body: jsonData,
       headers: {
@@ -54,7 +52,7 @@ export async function patchTask(id: any, jsonData: any) {
 }
 
 export async function postTask(jsonData: any) {
-    await fetch(`http://${BACKEND_DOMEN}/api/v1/tasks/`, {
+    await fetch(`${BACKEND_DOMEN}/api/v1/tasks/`, {
       method: "POST",
       body: jsonData,
       headers: {
