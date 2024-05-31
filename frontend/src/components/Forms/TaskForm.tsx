@@ -49,7 +49,7 @@ export default function TaskForm({
       setAppForm(<></>);
     } catch (error) {
       openNotification("error", "Произошла ошибка");
-      console.log(error)
+      console.log(error);
     }
   };
 
@@ -140,7 +140,6 @@ export default function TaskForm({
                 </label>
                 <Form.Item
                   name="performer"
-                  rules={[{ required: true, message: "Укажите исполнителя!" }]}
                   initialValue={formState.performer?.username}
                 >
                   <Select>
@@ -163,7 +162,7 @@ export default function TaskForm({
                 <Form.Item
                   rules={[{ required: true, message: "Укажите дату!" }]}
                   name="end"
-                  initialValue={dayjs(formState.end)}
+                  initialValue={formState.end && dayjs(formState.end)}
                 >
                   <DatePicker
                     placeholder="ДД.ММ.ГГГГ"

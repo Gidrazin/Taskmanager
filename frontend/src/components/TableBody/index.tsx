@@ -40,7 +40,7 @@ const TableBody = ({
             )}`}
           >
             <td className="table__body-ceil">{task.theme.slug}</td>
-            <Tooltip title={`Редактировать ${task.title}`}>
+            <Tooltip placement="left" title={`Редактировать ${task.title}`}>
               <td
                 onClick={() =>
                   setAppForm(
