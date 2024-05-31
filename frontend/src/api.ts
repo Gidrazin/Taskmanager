@@ -11,7 +11,7 @@ export async function getTasks(
   pages = ""
 ) {
   const res = await fetch(
-    `http://${BACKEND_DOMEN}/api/v1/tasks/?search=${theme},${end}&performer=${performer}`,
+    `${BACKEND_DOMEN}/api/v1/tasks/?search=${theme},${end}&performer=${performer}`,
     { method: "GET" }
   );
   const tasks = await res.json();
