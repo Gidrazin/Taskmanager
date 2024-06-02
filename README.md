@@ -1,10 +1,19 @@
 # Taskmanager
 
 ## for build frontend
-### `Накатить NodeJS`
+Нужен Node js!
+
 ### `cd frontend`
+
+Установка зависимостей
 ### `npm install`
-### `Создать файл .env`
-### `Добавить строку REACT_APP_BACKEND_DOMEN=домен`
+
+### `Создать файл .env и заполнить в соответствии с env.example`
+
+Сборка фронтенда
 ### `npm run build`
-### `Папку build несешь на завод`
+### `Принести на завод папку frontend`
+
+На заводе запускаешь сервер
+Запуск фронтенд сервера
+### `node server.js` 
