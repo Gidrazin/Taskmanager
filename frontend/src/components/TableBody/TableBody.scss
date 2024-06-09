@@ -4,8 +4,25 @@
     font-size: 20px;
     text-transform: uppercase;
     color: #fff;
-    height: 40px;
     text-align: center;
+
+    @include table-config;
+  }
+  &-ceil {
+    padding: 5px 20px;
+    white-space: nowrap; /* Запретить перенос слов */
+    overflow: hidden; /* Скрыть текст, который выходит за пределы */
+    text-overflow: ellipsis;
+
+    margin-bottom: 10px;
+
+    &--clickable {
+      cursor: pointer;
+      text-decoration: underline;
+      &:hover {
+        text-decoration: none;
+      }
+    }
 
     &--announced {
       background-color: $announced-color;
@@ -20,21 +37,5 @@
       background-color: $done-color;
       color: #000;
     }
-  }
-  &-ceil {
-    max-width: 300px;
-    padding: 0 20px;
-    white-space: nowrap; /* Запретить перенос слов */
-    overflow: hidden; /* Скрыть текст, который выходит за пределы */
-    text-overflow: ellipsis;
-    &--clickable {
-      cursor: pointer;
-      text-decoration: underline;
-      &:hover {
-        text-decoration: none;
-      }
-    }
-
-    @include width-table;
   }
 }

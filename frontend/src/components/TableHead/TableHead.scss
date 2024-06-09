@@ -1,15 +1,15 @@
 @import "../../styles/var.scss";
 .table__head {
-  width: 100%;
   &-row {
     font-size: 22px;
     text-transform: uppercase;
     color: #000;
-    height: 42px;
-    width: 100%;
+    @include table-config;
+    margin-bottom: 20px;
   }
   &-ceil {
     position: relative;
+    padding: 10px 0;
     &::before {
       content: "";
       position: absolute;
@@ -23,6 +23,5 @@
       background-repeat: no-repeat;
       background-position: center;
     }
-    @include width-table;
   }
 }

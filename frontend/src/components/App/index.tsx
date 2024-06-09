@@ -94,19 +94,18 @@ function App() {
       </header>
       <main className="main">
         {appForm}
-        <div className="table-wrapper">
-          <table className="table">
-            <TableHead />
-            <TableBody
-              themes={themes}
-              performers={performers}
-              openNotification={openNotification}
-              setAppForm={setAppForm}
-              tasks={tasks}
-              tasksStartRender={tasksStartRender}
-            />
-          </table>
-        </div>
+
+        <table className="table">
+          <TableHead />
+          <TableBody
+            themes={themes}
+            performers={performers}
+            openNotification={openNotification}
+            setAppForm={setAppForm}
+            tasks={tasks}
+            tasksStartRender={tasksStartRender}
+          />
+        </table>
 
         <PaginationBlock
           tasks={tasks}

@@ -24,6 +24,11 @@ const TableBody = ({
   performers,
   openNotification,
 }: Props) => {
+  const ceilClass = (task: Task) =>
+    `table__body-ceil table__body-ceil--${getStatus(
+      !!task.report,
+      !!task.performer
+    )}`;
   return (
     <tbody className="table__body">
       {tasks
@@ -32,15 +37,9 @@ const TableBody = ({
         .filter((_, index) => index < tasksMaxRender)
         //Мапинг тасков
         .map((task) => (
-          <tr
-            key={task.id}
-            className={`table__body-row table__body-row--${getStatus(
-              !!task.report,
-              !!task.performer
-            )}`}
-          >
-            <td className="table__body-ceil">{task.theme.slug}</td>
-            <Tooltip placement="left" title={`Редактировать ${task.title}`}>
+          <tr key={task.id} className="table__body-row">
+            <td className={ceilClass(task)}>{task.theme.slug}</td>
+            <Tooltip placement="left" title={task.title}>
               <td
                 onClick={() =>
                   setAppForm(
@@ -61,24 +60,26 @@ const TableBody = ({
                     ></TaskForm>
                   )
                 }
-                className="table__body-ceil table__body-ceil--clickable"
+                className={`${ceilClass(task)} table__body-ceil--clickable`}
               >
                 {task.title}
               </td>
             </Tooltip>
 
-            <td className="table__body-ceil">
+            <td className={ceilClass(task)}>
               {task.performer
                 ? task.performer.first_name + " " + task.performer.last_name
-                : ""}
+                : "\u00A0"}
             </td>
-            <td className="table__body-ceil">
+            <td className={ceilClass(task)}>
               {task.end && dateFormat(task.end).tableDate}
             </td>
-            <td className="table__body-ceil">
-              {task.report ? task.report : ""}
+            <td className={ceilClass(task)}>
+              {task.report ? task.report : "\u00A0"}
             </td>
-            <td className="table__body-ceil">{task.pages ? task.pages : ""}</td>
+            <td className={ceilClass(task)}>
+              {task.pages ? task.pages : "\u00A0"}
+            </td>
           </tr>
         ))}
     </tbody>
