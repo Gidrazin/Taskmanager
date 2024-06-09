@@ -9,35 +9,37 @@
   text-transform: uppercase;
   font-family: "Jura Bold";
   color: #000120;
-  &__hexSvg {
+  &::after {
+    content: "";
     position: absolute;
     z-index: -1;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-    path {
-      fill: #b4b1b8;
-      transition: fill linear 0.2s;
-    }
+    background-image: url("../../../public/images/gray-hex.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: opacity linear 0.2s;
   }
-
+  &::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-image: url("../../../public/images/gray-hex-hover.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
   &:hover {
-    .create-btn__hexSvg {
-      path {
-        fill: #6f6d72;
-        transition: fill linear 0.5s;
-        stroke: #e9e8ee; /* Цвет контура */
-        stroke-width: 3; /* Ширина контура */
-        stroke-dasharray: 680; /* Периметр шестиугольника */
-        stroke-dashoffset: 680; /* Начальное смещение контура на длину периметра, чтобы он был невидимым */
-        animation: draw 0.5s linear forwards;
-      }
-    }
-    @keyframes draw {
-      to {
-        stroke-dashoffset: 0; /* Контур перемещается обратно на 0, показывая его полностью */
-      }
+    &::after {
+      opacity: 0;
+      transition: opacity linear 0.2s;
     }
   }
 }

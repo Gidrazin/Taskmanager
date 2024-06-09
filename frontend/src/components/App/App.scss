@@ -10,9 +10,11 @@
   .header {
     display: flex;
     justify-content: space-between;
-    padding: 40px 0;
     gap: 25px;
     color: #000120;
+    height: 80px;
+    margin-bottom: 20px;
+    margin-top: 20px;
   }
 
   .logo {
@@ -22,7 +24,6 @@
     position: relative;
     z-index: 0;
     flex-basis: 20%;
-    padding: 15px 0;
     &::before {
       content: "";
       position: absolute;
@@ -44,7 +45,7 @@
     align-items: center;
     justify-content: center;
     z-index: 0;
-    flex-basis: 60%;
+    flex-grow: 1;
     text-align: center;
     margin: 0;
     font-size: 49px;
@@ -61,5 +62,8 @@
       background-repeat: no-repeat;
       background-position: center;
     }
+  }
+  .table {
+    min-width: 100%;
   }
 }

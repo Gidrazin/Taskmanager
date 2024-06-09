@@ -96,8 +96,6 @@
         background-color: transparent;
       }
     }
-
-    
   }
 
   &__title {
@@ -160,16 +158,11 @@
     &:hover {
       color: #000120;
       transition: color linear 0.2s;
-      .form__btn-hexSvg {
-        path {
-          fill: transparent;
-          transition: fill linear 0.2s;
-          stroke: #000120; /* Цвет контура */
-          stroke-width: 2; /* Ширина контура */
-          stroke-dasharray: 670; /* Периметр шестиугольника */
-          stroke-dashoffset: 670; /* Начальное смещение контура на длину периметра, чтобы он был невидимым */
-          animation: draw 0.5s linear forwards;
-        }
+      path {
+        fill: transparent;
+        transition: fill linear 0.2s;
+        stroke: #0e1c49;
+        stroke-width: 1px;
       }
     }
   }
