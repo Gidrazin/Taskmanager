@@ -2,7 +2,6 @@ import "./TableBody.scss";
 import { Task } from "../../types";
 import { dateFormat } from "../../utils/dateUtils";
 import { getStatus } from "../../utils/getStatus";
-import { tasksMaxRender } from "../../config";
 import TaskForm from "../Forms/TaskForm";
 import { Theme, Performer } from "../../types";
 import { Tooltip } from "antd";
@@ -14,6 +13,7 @@ interface Props {
   themes: Theme[];
   performers: Performer[];
   openNotification: Function;
+  sizePageValue: number
 }
 
 const TableBody = ({
@@ -23,6 +23,7 @@ const TableBody = ({
   themes,
   performers,
   openNotification,
+  sizePageValue
 }: Props) => {
   const ceilClass = (task: Task) =>
     `table__body-ceil table__body-ceil--${getStatus(
@@ -34,7 +35,7 @@ const TableBody = ({
       {tasks
         //Фильтры пагинации
         .filter((_, index) => index >= tasksStartRender)
-        .filter((_, index) => index < tasksMaxRender)
+        .filter((_, index) => index < sizePageValue)
         //Мапинг тасков
         .map((task) => (
           <tr key={task.id} className="table__body-row">

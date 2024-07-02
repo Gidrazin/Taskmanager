@@ -1,5 +1,14 @@
 .paginationBlock {
   display: flex;
-  justify-content: end;
+  margin-left: auto;
   margin-top: 20px;
+  max-width: fit-content;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+
+  &__text {
+    color: #e9e8ee;
+    margin-right: 20px;
+  }
 }

@@ -56,6 +56,17 @@ class TaskViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(author=get_user_by_ip(self.request))
+    
+    def perform_update(self, serializer):
+        username = self.request.data.get('performer')
+        instance = self.get_object()
+        if not username:
+            instance.performer = None
+        else:
+            instance.performer = User.objects.get(username = username)
+        instance.save()
+        serializer = self.get_serializer(instance)
+        return Response(serializer.data)
 
 
 class ThemeViewSet(viewsets.ModelViewSet):

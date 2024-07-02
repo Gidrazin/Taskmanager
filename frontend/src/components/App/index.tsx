@@ -21,6 +21,8 @@ function App() {
 
   const [appForm, setAppForm] = useState(<></>);
 
+  const [sizePageValue, setSizePageValue] = useState(10)
+
   const [api, contextHolder] = notification.useNotification();
 
   const openNotification = (type: "success" | "error", text: string) => {
@@ -104,12 +106,17 @@ function App() {
             setAppForm={setAppForm}
             tasks={tasks}
             tasksStartRender={tasksStartRender}
+            sizePageValue={sizePageValue}
           />
         </table>
 
         <PaginationBlock
-          tasks={tasks}
+          tasksCount={tasks.length}
+
           setTasksStartRender={setTasksStartTender}
+
+          sizePageValue={sizePageValue}
+          setSizePageValue={setSizePageValue}
         />
       </main>
     </div>
