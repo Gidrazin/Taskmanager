@@ -34,7 +34,7 @@ export default function TaskForm({
 
     sendItems.theme = values.theme;
     sendItems.title = values.title;
-    sendItems.performer = values.performer
+    sendItems.performer = values.performer ? values.performer : undefined
     sendItems.report = values.report ? values.report : "";
     sendItems.end = dateFormat(values.end.$d).isoDate;
     sendItems.pages = values.pages ? values.pages : 0;
@@ -47,7 +47,7 @@ export default function TaskForm({
         await postTask(JSON.stringify(sendItems));
         openNotification("success", "Задача добавлена");
       }
-      
+
       setAppForm(<></>);
     } catch (error) {
       openNotification("error", "Произошла ошибка");

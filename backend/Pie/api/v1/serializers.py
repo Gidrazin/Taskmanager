@@ -46,7 +46,13 @@ class TaskPostPutPatchDeleteSerializer(serializers.ModelSerializer):
         read_only=True
     )
 
+    def update(self, instance, validated_data):
+        performer = validated_data.pop('performer', None)
+        instance = super().update(instance, validated_data)
+        instance.performer = performer
+        instance.save()
+        return instance
+
     class Meta:
         model = Task
         fields = '__all__'
-        extra_kwargs = { 'performer': {'allow_null': True, 'allow_blank': True } }
