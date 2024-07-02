@@ -2,6 +2,7 @@ import { dateFormat } from "../../utils/dateUtils";
 import { patchTask, postTask } from "../../api";
 import { Task, Theme, Performer } from "../../types";
 import dayjs from "dayjs";
+import locale from "antd/es/date-picker/locale/ru_RU";
 
 import "./Form.scss";
 import {
@@ -33,7 +34,7 @@ export default function TaskForm({
 
     sendItems.theme = values.theme;
     sendItems.title = values.title;
-    sendItems.performer = values.performer;
+    sendItems.performer = values.performer
     sendItems.report = values.report ? values.report : "";
     sendItems.end = dateFormat(values.end.$d).isoDate;
     sendItems.pages = values.pages ? values.pages : 0;
@@ -46,6 +47,7 @@ export default function TaskForm({
         await postTask(JSON.stringify(sendItems));
         openNotification("success", "Задача добавлена");
       }
+      
       setAppForm(<></>);
     } catch (error) {
       openNotification("error", "Произошла ошибка");
@@ -114,7 +116,7 @@ export default function TaskForm({
                     <Select.Option value="">--</Select.Option>
                     {themes.map((themeItem, index) => (
                       <Select.Option key={index} value={themeItem.slug}>
-                        {themeItem.title}
+                        {themeItem.slug} - {themeItem.title}
                       </Select.Option>
                     ))}
                   </Select>
@@ -140,7 +142,7 @@ export default function TaskForm({
                 </label>
                 <Form.Item
                   name="performer"
-                  initialValue={formState.performer?.username}
+                  initialValue={formState.performer ? formState.performer.username : ''}
                 >
                   <Select>
                     <Select.Option value="">--</Select.Option>
@@ -168,6 +170,7 @@ export default function TaskForm({
                     placeholder="ДД.ММ.ГГГГ"
                     className="form__item-element"
                     style={{ display: "block" }}
+                    locale={locale}
                   />
                 </Form.Item>
               </div>

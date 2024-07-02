@@ -32,7 +32,7 @@ class TaskGetSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class TaskPostPutPatchDeleteSerializer(serializers.ModelSerializer):
+class TaskPostPutPatchDeleteSerializer(serializers.ModelSerializer):   
     performer = serializers.SlugRelatedField(
         queryset=User.objects.all(),
         slug_field='username',
@@ -49,3 +49,4 @@ class TaskPostPutPatchDeleteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Task
         fields = '__all__'
+        extra_kwargs = { 'performer': {'allow_null': True, 'allow_blank': True } }

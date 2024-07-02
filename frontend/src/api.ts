@@ -25,38 +25,40 @@ export async function getTasks(
 // }
 
 export async function getPerformers() {
-    const resPerformers = await fetch(`${BACKEND_DOMEN}/api/v1/users/`, {
-      method: "GET",
-    });
-    const performers = await resPerformers.json()
-    return performers
+  const resPerformers = await fetch(`${BACKEND_DOMEN}/api/v1/users/`, {
+    method: "GET",
+  });
+  const performers = await resPerformers.json()
+  return performers
 }
 
 export async function getThemes() {
-    const resThemes = await fetch(`${BACKEND_DOMEN}/api/v1/themes/`, {
-      method: "GET",
-    });
-    const themes = await resThemes.json()
-    return themes
+  const resThemes = await fetch(`${BACKEND_DOMEN}/api/v1/themes/`, {
+    method: "GET",
+  });
+  const themes = await resThemes.json()
+  return themes
 }
 
 export async function patchTask(id: any, jsonData: any) {
 
-    await fetch(`${BACKEND_DOMEN}/api/v1/tasks/${id}/`, {
-      method: "PATCH",
-      body: jsonData,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+  const result = await fetch(`${BACKEND_DOMEN}/api/v1/tasks/${id}/`, {
+    method: "PATCH",
+    body: jsonData,
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  if (!result.ok) throw new Error("Ошибка обновления задачи");
 }
 
 export async function postTask(jsonData: any) {
-    await fetch(`${BACKEND_DOMEN}/api/v1/tasks/`, {
-      method: "POST",
-      body: jsonData,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+  const result = await fetch(`${BACKEND_DOMEN}/api/v1/tasks/`, {
+    method: "POST",
+    body: jsonData,
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  if (!result.ok) throw new Error("Ошибка добавления задачи");
 }
