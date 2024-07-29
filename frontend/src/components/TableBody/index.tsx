@@ -1,7 +1,7 @@
 import "./TableBody.scss";
 import { Task } from "../../types";
 import { dateFormat } from "../../utils/dateUtils";
-import { getStatus } from "../../utils/getStatus";
+import { getStatus } from "../../utils/statusUtils";
 import TaskForm from "../Forms/TaskForm";
 import { Theme, Performer } from "../../types";
 import { Tooltip } from "antd";

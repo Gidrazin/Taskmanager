@@ -9,11 +9,16 @@ import TableBody from "../TableBody";
 import TableHead from "../TableHead";
 import PaginationBlock from "../PaginationBlock";
 import TaskForm from "../Forms/TaskForm";
+import FilterCheckbox from "../FilterCheckbox";
 
-import { ConfigProvider, notification } from "antd";
+import { ConfigProvider, notification, Typography } from "antd";
+
+import { getTaskByStatus } from "../../utils/statusUtils";
 
 function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
+  const [filteredTasks, setFilteredTasks] = useState<Task[]>([])
+
   const [themes, setThemes] = useState<Theme[]>([]);
   const [performers, setPerformers] = useState<Performer[]>([]);
 
@@ -24,6 +29,10 @@ function App() {
   const [sizePageValue, setSizePageValue] = useState(10)
 
   const [api, contextHolder] = notification.useNotification();
+
+  const [doneFilter, setDoneFilter] = useState(true)
+  const [announcedFilter, setAnnouncedFilter] = useState(true)
+  const [inProgressFilter, setInProgressFilter] = useState(true)
 
   const openNotification = (type: "success" | "error", text: string) => {
     api[type]({
@@ -45,6 +54,24 @@ function App() {
 
     getData();
   }, [appForm]);
+
+  useEffect(() => {
+    const filterArray: string[] = []
+
+    doneFilter
+      ? filterArray.push('done')
+      : filterArray.splice(1, filterArray.findIndex((status) => status === 'done'))
+
+    announcedFilter
+      ? filterArray.push('announced')
+      : filterArray.splice(1, filterArray.findIndex((status) => status === 'announced'))
+
+    inProgressFilter
+      ? filterArray.push('inProgress')
+      : filterArray.splice(1, filterArray.findIndex((status) => status === 'inProgress'))
+
+    setFilteredTasks(getTaskByStatus(tasks, filterArray))
+  }, [tasks, doneFilter, announcedFilter, inProgressFilter])
 
   return (
     <div className="App">
@@ -96,22 +123,45 @@ function App() {
       </header>
       <main className="main">
         {appForm}
+        <div className="filterBlock">
 
+          <div className="filterBlock__wrapper">
+            <div className="filterBlock__title">Фильтр по статусу</div>
+            <div className="filterBlock__checkboxList">
+              <FilterCheckbox
+                onClick={() => { setDoneFilter(!doneFilter) }}
+                value={doneFilter}
+                type="done"
+              />
+              <FilterCheckbox
+                onClick={() => { setAnnouncedFilter(!announcedFilter) }}
+                value={announcedFilter}
+                type="announced"
+              />
+              <FilterCheckbox
+                onClick={() => { setInProgressFilter(!inProgressFilter) }}
+                value={inProgressFilter}
+                type="inProgress"
+              />
+            </div>
+          </div>
+        </div>
         <table className="table">
           <TableHead />
+
           <TableBody
             themes={themes}
             performers={performers}
             openNotification={openNotification}
             setAppForm={setAppForm}
-            tasks={tasks}
+            tasks={filteredTasks}
             tasksStartRender={tasksStartRender}
             sizePageValue={sizePageValue}
           />
         </table>
 
         <PaginationBlock
-          tasksCount={tasks.length}
+          tasksCount={filteredTasks.length}
 
           setTasksStartRender={setTasksStartTender}
 

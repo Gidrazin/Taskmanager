@@ -1,0 +1,24 @@
+.checkboxItem {
+  position: relative;
+  cursor: pointer;
+
+  &:hover {
+    .checkboxImgBase {
+      transform: scale(1.1);
+      transition: transform linear 0.2s;
+    }
+  }
+}
+
+.checkboxImgBase {
+  width: 30px;
+  transition: transform linear 0.2s;
+}
+
+.checkboxImgCheck {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 18px;
+}
