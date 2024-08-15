@@ -1,4 +1,13 @@
 # Taskmanager
+## server launch
+Запуск venv
+### `source venv/Scripts/activate`
+
+### `cd Pie/`
+
+Запуск сервера
+### `python manage.py runserver`
+
 
 ## for build frontend
 Нужен Node js!
