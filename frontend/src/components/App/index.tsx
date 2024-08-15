@@ -11,7 +11,7 @@ import PaginationBlock from "../PaginationBlock";
 import TaskForm from "../Forms/TaskForm";
 import FilterCheckbox from "../FilterCheckbox";
 
-import { ConfigProvider, notification, Typography } from "antd";
+import { ConfigProvider, notification } from "antd";
 
 import { getTaskByStatus } from "../../utils/statusUtils";
 
