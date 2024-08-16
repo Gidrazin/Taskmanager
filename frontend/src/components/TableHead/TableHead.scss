@@ -10,10 +10,9 @@
   }
 
   &-ceil {
-    display: flex;
-    justify-content: center;
     position: relative;
     padding: 10px 0;
+
     &::before {
       content: "";
       position: absolute;
@@ -27,30 +26,39 @@
       background-repeat: no-repeat;
       background-position: center;
     }
-
-    .ceit-title {
-      flex-grow: 1;
-      margin-left: 20px;
-    }
   }
 
   .sort-btn {
-    position: relative;
-    margin-right: 20px;
-    width: 25px;
-    
-    .moveDown-icon {
-      position: absolute;
-      top: 2px;
-      right: -0px;
-      z-index: 0;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    transition: background-color 0.2s ease-in-out;
+    border-radius: 50%;
+    &:hover {
+      background-color: #6f6d7224;
+      transition: background-color 0.2s ease-in-out;
     }
-
-    .moveUp-icon {
+    .icon-wrapper {
       position: absolute;
-      top: 2px;
+      top: 13px;
+      left: 0;
+      bottom: 0;
       right: -10px;
-      z-index: 1;
+      .moveDown-icon {
+        position: absolute;
+        top: -9px;
+        right: 20px;
+        z-index: 0;
+      }
+
+      .moveUp-icon {
+        position: absolute;
+        top: -9px;
+        right: 10px;
+        z-index: 0;
+      }
     }
   }
 }

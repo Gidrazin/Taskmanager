@@ -4,29 +4,41 @@ import TableHeadItem from "./TableHeadItem";
 const TableHead = () => {
   const tableHeadArray = [
     {
-      title: 'Тема'
+      title: 'Тема',
+      hasSort: false
     },
     {
-      title: 'Наименование'
+      title: 'Наименование',
+      hasSort: true
     },
     {
-      title: 'ФИО'
+      title: 'ФИО',
+      hasSort: true
     },
     {
-      title: 'Срок'
+      title: 'Срок',
+      hasSort: true
     },
     {
-      title: 'Номер ЛЗ'
+      title: 'Номер ЛЗ',
+      hasSort: false
     },
     {
-      title: 'Стр'
+      title: 'Стр',
+      hasSort: true
     },
   ]
   return (
     <thead className="table__head">
       <tr className="table__head-row">
         {
-          tableHeadArray.map((tableHeadArrayItem) => <TableHeadItem title={tableHeadArrayItem.title} />)
+          tableHeadArray.map((tableHeadArrayItem, index) => (
+            <TableHeadItem
+              key={index}
+              title={tableHeadArrayItem.title}
+              hasSort={tableHeadArrayItem.hasSort}
+            />
+          ))
         }
       </tr>
     </thead>
