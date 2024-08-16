@@ -11,10 +11,8 @@ const TableHeadItem = ({ title, hasSort }: { title: string, hasSort: boolean }) 
             <MoveDown className="moveDown-icon" strokeWidth={2} color="#6f6d72" size={20} />
             <MoveUp className="moveUp-icon" strokeWidth={2} color="#6f6d72" size={20} />
           </div>
-          
         </button>
       </Tooltip>
-
     )
     }
   </th>

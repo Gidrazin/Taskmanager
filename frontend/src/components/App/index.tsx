@@ -2,7 +2,7 @@ import "./App.scss";
 
 import { useState, useEffect } from "react";
 import { getTasks, getThemes, getPerformers } from "../../api";
-import { Performer, Task, Theme } from "../../types";
+import { Performer, Task, Theme, SortType } from "../../types";
 
 import AddTaskBtn from "../Create-btn";
 import TableBody from "../TableBody";
@@ -33,6 +33,8 @@ function App() {
   const [doneFilter, setDoneFilter] = useState(true)
   const [announcedFilter, setAnnouncedFilter] = useState(true)
   const [inProgressFilter, setInProgressFilter] = useState(true)
+
+  const [taskSort, setTaskSort] = useState<SortType>(null)
 
   const openNotification = (type: "success" | "error", text: string) => {
     api[type]({
@@ -70,8 +72,27 @@ function App() {
       ? filterArray.push('inProgress')
       : filterArray.splice(1, filterArray.findIndex((status) => status === 'inProgress'))
 
-    setFilteredTasks(getTaskByStatus(tasks, filterArray))
-  }, [tasks, doneFilter, announcedFilter, inProgressFilter])
+    const filteredTasks = getTaskByStatus(tasks, filterArray)
+    const sortedTasks = [...filteredTasks]
+      // .sort((a, b) => {
+      //   switch (taskSort) {
+      //     case 'title':
+      //       console.log('sorted by title');
+      //       break;
+      //     case 'username':
+      //       console.log('sorted by username');
+      //       break;
+      //     case 'end':
+      //       console.log('sorted by end');
+      //       break;
+      //     case 'pages':
+      //       console.log('sorted by pages');
+      //       break;
+      //   }
+      // })
+
+    setFilteredTasks(sortedTasks)
+  }, [tasks, doneFilter, announcedFilter, inProgressFilter, taskSort])
 
   return (
     <div className="App">

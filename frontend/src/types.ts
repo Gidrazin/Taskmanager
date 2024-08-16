@@ -23,4 +23,6 @@ export interface Theme {
   title: string;
 }
 
+export type SortType = null | 'title' | 'end' | 'username' | 'pages'
+
 export type Status = "done" | "announced" | "in progress";
