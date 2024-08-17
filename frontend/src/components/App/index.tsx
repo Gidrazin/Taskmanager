@@ -74,22 +74,43 @@ function App() {
 
     const filteredTasks = getTaskByStatus(tasks, filterArray)
     const sortedTasks = [...filteredTasks]
-      // .sort((a, b) => {
-      //   switch (taskSort) {
-      //     case 'title':
-      //       console.log('sorted by title');
-      //       break;
-      //     case 'username':
-      //       console.log('sorted by username');
-      //       break;
-      //     case 'end':
-      //       console.log('sorted by end');
-      //       break;
-      //     case 'pages':
-      //       console.log('sorted by pages');
-      //       break;
-      //   }
-      // })
+    // .sort((a, b) => {
+    //   switch (taskSort) {
+    //     case 'title':
+    //       console.log('sorted by title');
+    //       break;
+    //     case 'username':
+    //       console.log('sorted by username');
+    //       break;
+    //     case 'end':
+    //       console.log('sorted by end');
+    //       break;
+    //     case 'pages':
+    //       console.log('sorted by pages');
+    //       break;
+    //   }
+    // })
+
+    switch (taskSort?.sortName) {
+      case 'title':
+        if (taskSort.sortDirection === 'up') console.log('sorted by title with up');
+        if (taskSort.sortDirection === 'down') console.log('sorted by title with down');
+        break;
+      case 'username':
+        if (taskSort.sortDirection === 'up') console.log('sorted by username with up');
+        if (taskSort.sortDirection === 'down') console.log('sorted by username with down');
+        break;
+      case 'end':
+        if (taskSort.sortDirection === 'up') console.log('sorted by end with up');
+        if (taskSort.sortDirection === 'down') console.log('sorted by end with down');
+        break;
+      case 'pages':
+        if (taskSort.sortDirection === 'up') console.log('sorted by pages with up');
+        if (taskSort.sortDirection === 'down') console.log('sorted by pages with down');
+        break;
+      default:
+        console.log('sorted is null');
+    }
 
     setFilteredTasks(sortedTasks)
   }, [tasks, doneFilter, announcedFilter, inProgressFilter, taskSort])
@@ -168,7 +189,7 @@ function App() {
           </div>
         </div>
         <table className="table">
-          <TableHead />
+          <TableHead setTaskSort={setTaskSort} taskSort={taskSort} />
 
           <TableBody
             themes={themes}

@@ -1,31 +1,48 @@
+import { SortName, SortType } from "../../types";
 import "./TableHead.scss";
 import TableHeadItem from "./TableHeadItem";
 
-const TableHead = () => {
-  const tableHeadArray = [
+const TableHead = ({ setTaskSort, taskSort }: { setTaskSort: any, taskSort: SortType }) => {
+  const tableHeadArray: { title: string, sort: { hasSort: boolean, sortName?: SortName } }[] = [
     {
       title: 'Тема',
-      hasSort: false
+      sort: {
+        hasSort: false,
+      }
     },
     {
       title: 'Наименование',
-      hasSort: true
+      sort: {
+        hasSort: true,
+        sortName: 'title'
+      }
     },
     {
       title: 'ФИО',
-      hasSort: true
+      sort: {
+        hasSort: true,
+        sortName: 'username'
+      }
     },
     {
       title: 'Срок',
-      hasSort: true
+      sort: {
+        hasSort: true,
+        sortName: 'end'
+      }
     },
     {
       title: 'Номер ЛЗ',
-      hasSort: false
+      sort: {
+        hasSort: false
+      }
     },
     {
       title: 'Стр',
-      hasSort: true
+      sort: {
+        hasSort: true,
+        sortName: 'pages'
+      }
     },
   ]
   return (
@@ -36,7 +53,9 @@ const TableHead = () => {
             <TableHeadItem
               key={index}
               title={tableHeadArrayItem.title}
-              hasSort={tableHeadArrayItem.hasSort}
+              sort={tableHeadArrayItem.sort}
+              setTaskSort={setTaskSort}
+              taskSort={taskSort}
             />
           ))
         }
