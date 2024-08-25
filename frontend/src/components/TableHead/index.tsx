@@ -7,7 +7,8 @@ const TableHead = ({ setTaskSort, taskSort }: { setTaskSort: any, taskSort: Sort
     {
       title: 'Тема',
       sort: {
-        hasSort: false,
+        hasSort: true,
+        sortName: 'theme'
       }
     },
     {

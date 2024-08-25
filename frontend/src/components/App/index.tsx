@@ -14,6 +14,7 @@ import FilterCheckbox from "../FilterCheckbox";
 import { ConfigProvider, notification } from "antd";
 
 import { getTaskByStatus } from "../../utils/statusUtils";
+import { themeSortFunc, endSortFunc, pagesSortFunc, titleSortFunc, usernameSortFunc } from "../../utils/sortUtils";
 
 function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -73,43 +74,27 @@ function App() {
       : filterArray.splice(1, filterArray.findIndex((status) => status === 'inProgress'))
 
     const filteredTasks = getTaskByStatus(tasks, filterArray)
-    const sortedTasks = [...filteredTasks]
-    // .sort((a, b) => {
-    //   switch (taskSort) {
-    //     case 'title':
-    //       console.log('sorted by title');
-    //       break;
-    //     case 'username':
-    //       console.log('sorted by username');
-    //       break;
-    //     case 'end':
-    //       console.log('sorted by end');
-    //       break;
-    //     case 'pages':
-    //       console.log('sorted by pages');
-    //       break;
-    //   }
-    // })
+
+    let sortedTasks: Task[] = []
 
     switch (taskSort?.sortName) {
+      case 'theme':
+        sortedTasks = themeSortFunc(filteredTasks, taskSort.sortDirection)
+        break;
       case 'title':
-        if (taskSort.sortDirection === 'up') console.log('sorted by title with up');
-        if (taskSort.sortDirection === 'down') console.log('sorted by title with down');
+        sortedTasks = titleSortFunc(filteredTasks, taskSort.sortDirection)
         break;
       case 'username':
-        if (taskSort.sortDirection === 'up') console.log('sorted by username with up');
-        if (taskSort.sortDirection === 'down') console.log('sorted by username with down');
+        sortedTasks = usernameSortFunc(filteredTasks, taskSort.sortDirection)
         break;
       case 'end':
-        if (taskSort.sortDirection === 'up') console.log('sorted by end with up');
-        if (taskSort.sortDirection === 'down') console.log('sorted by end with down');
+        sortedTasks = endSortFunc(filteredTasks, taskSort.sortDirection)
         break;
       case 'pages':
-        if (taskSort.sortDirection === 'up') console.log('sorted by pages with up');
-        if (taskSort.sortDirection === 'down') console.log('sorted by pages with down');
+        sortedTasks = pagesSortFunc(filteredTasks, taskSort.sortDirection)
         break;
       default:
-        console.log('sorted is null');
+        sortedTasks = [...filteredTasks]
     }
 
     setFilteredTasks(sortedTasks)

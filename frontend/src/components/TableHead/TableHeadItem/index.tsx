@@ -14,23 +14,31 @@ const TableHeadItem = ({ title, sort, setTaskSort, taskSort }: { title: string, 
               sortDirection: 'down'
             })
 
-            if (prev?.sortDirection === 'up') return null
+            if (prev.sortName === sort.sortName) {
+              if (prev?.sortDirection === 'up') return null
 
-            if (prev?.sortDirection === 'down') return ({
-              sortName: sort.sortName,
-              sortDirection: 'up'
-            })
+              if (prev?.sortDirection === 'down') return ({
+                sortName: sort.sortName,
+                sortDirection: 'up'
+              })
+            } else {
+              return ({
+                sortName: sort.sortName,
+                sortDirection: 'down'
+              })
+            }
+
           })
         }} className="sort-btn">
           <div className="icon-wrapper">
             <MoveDown
               className="moveDown-icon"
-              strokeWidth={taskSort?.sortDirection === 'down' 
+              strokeWidth={taskSort?.sortDirection === 'down'
                 && taskSort.sortName === sort.sortName
                 ? 3
                 : 2
               }
-              color={taskSort?.sortDirection === 'down' 
+              color={taskSort?.sortDirection === 'down'
                 && taskSort.sortName === sort.sortName
                 ? '#0e1c49'
                 : "#6f6d72"
@@ -38,12 +46,12 @@ const TableHeadItem = ({ title, sort, setTaskSort, taskSort }: { title: string, 
               size={20} />
             <MoveUp
               className="moveUp-icon"
-              strokeWidth={taskSort?.sortDirection === 'up' 
+              strokeWidth={taskSort?.sortDirection === 'up'
                 && taskSort.sortName === sort.sortName
                 ? 3
                 : 2
               }
-              color={taskSort?.sortDirection === 'up' 
+              color={taskSort?.sortDirection === 'up'
                 && taskSort.sortName === sort.sortName
                 ? '#0e1c49'
                 : "#6f6d72"}
@@ -53,7 +61,7 @@ const TableHeadItem = ({ title, sort, setTaskSort, taskSort }: { title: string, 
       </Tooltip>
     )
     }
-  </th>
+  </th >
 }
 
 export default TableHeadItem

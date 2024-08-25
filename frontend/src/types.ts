@@ -23,8 +23,8 @@ export interface Theme {
   title: string;
 }
 
-export type SortName = 'title' | 'end' | 'username' | 'pages'
+export type SortName = 'theme' | 'title' | 'end' | 'username' | 'pages'
 export type SortDirection = 'up' | 'down'
-export type SortType = {sortName: SortName, sortDirection: SortDirection} | null
+export type SortType = { sortName: SortName, sortDirection: SortDirection } | null
 
 export type Status = "done" | "announced" | "in progress";
