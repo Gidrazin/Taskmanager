@@ -4,11 +4,11 @@ import { useState, useEffect } from "react";
 import { getTasks, getThemes, getPerformers } from "../../api";
 import { Performer, Task, Theme, SortType } from "../../types";
 
-import AddTaskBtn from "../Create-btn";
 import TableBody from "../TableBody";
 import TableHead from "../TableHead";
 import PaginationBlock from "../PaginationBlock";
-import TaskForm from "../Forms/TaskForm";
+import Header from "../Header";
+
 import FilterCheckbox from "../FilterCheckbox";
 
 import { ConfigProvider, notification } from "antd";
@@ -113,41 +113,12 @@ function App() {
         {contextHolder}
       </ConfigProvider>
 
-      <header className="header">
-        <a className="logo" href="/">
-          <img className="logo__img" src="/images/logo.png" alt="logo" />
-        </a>
-        <h2 className="fullName">
-          <span>Казанцев Захар</span>
-        </h2>
-        <AddTaskBtn
-          clickHandler={() => {
-            setAppForm(
-              <TaskForm
-                setAppForm={setAppForm}
-                themes={themes}
-                performers={performers}
-                openNotification={openNotification}
-                formState={{
-                  id: NaN,
-                  theme: { id: NaN, slug: "", title: "" },
-                  title: "",
-                  performer: {
-                    id: NaN,
-                    username: "",
-                    first_name: "",
-                    last_name: "",
-                    ip: "",
-                  },
-                  end: "",
-                  report: "",
-                  pages: null,
-                }}
-              ></TaskForm>
-            );
-          }}
-        />
-      </header>
+      <Header
+        setAppForm={setAppForm}
+        themes={themes}
+        performers={performers}
+        openNotification={openNotification} />
+        
       <main className="main">
         {appForm}
         <div className="filterBlock">
