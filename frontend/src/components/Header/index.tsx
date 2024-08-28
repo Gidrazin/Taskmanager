@@ -1,5 +1,7 @@
 import { Performer, Theme } from "../../types";
 
+import "./Header.scss";
+
 import AddTaskBtn from "../Create-btn";
 import TaskForm from "../Forms/TaskForm";
 

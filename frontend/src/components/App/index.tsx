@@ -9,12 +9,11 @@ import TableHead from "../TableHead";
 import PaginationBlock from "../PaginationBlock";
 import Header from "../Header";
 
-import FilterCheckbox from "../FilterCheckbox";
-
 import { ConfigProvider, notification } from "antd";
 
 import { getTaskByStatus } from "../../utils/statusUtils";
 import { themeSortFunc, endSortFunc, pagesSortFunc, titleSortFunc, usernameSortFunc } from "../../utils/sortUtils";
+import FilterBlock from "../FilterBlock";
 
 function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -118,32 +117,17 @@ function App() {
         themes={themes}
         performers={performers}
         openNotification={openNotification} />
-        
+
       <main className="main">
         {appForm}
-        <div className="filterBlock">
-
-          <div className="filterBlock__wrapper">
-            <div className="filterBlock__title">Фильтр по статусу</div>
-            <div className="filterBlock__checkboxList">
-              <FilterCheckbox
-                onClick={() => { setDoneFilter(!doneFilter) }}
-                value={doneFilter}
-                type="done"
-              />
-              <FilterCheckbox
-                onClick={() => { setAnnouncedFilter(!announcedFilter) }}
-                value={announcedFilter}
-                type="announced"
-              />
-              <FilterCheckbox
-                onClick={() => { setInProgressFilter(!inProgressFilter) }}
-                value={inProgressFilter}
-                type="inProgress"
-              />
-            </div>
-          </div>
-        </div>
+        <FilterBlock
+          announcedFilter={announcedFilter}
+          doneFilter={doneFilter}
+          inProgressFilter={inProgressFilter}
+          setAnnouncedFilter={setAnnouncedFilter}
+          setDoneFilter={setDoneFilter}
+          setInProgressFilter={setInProgressFilter}
+        />
         <table className="table">
           <TableHead setTaskSort={setTaskSort} taskSort={taskSort} />
 
