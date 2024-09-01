@@ -8,6 +8,7 @@ import TableBody from "../TableBody";
 import TableHead from "../TableHead";
 import PaginationBlock from "../PaginationBlock";
 import Header from "../Header";
+import SearchBlock from "../SearchBlock";
 
 import { ConfigProvider, notification } from "antd";
 
@@ -116,7 +117,8 @@ function App() {
         setAppForm={setAppForm}
         themes={themes}
         performers={performers}
-        openNotification={openNotification} />
+        openNotification={openNotification}
+      />
 
       <main className="main">
         {appForm}
@@ -130,7 +132,7 @@ function App() {
         />
         <table className="table">
           <TableHead setTaskSort={setTaskSort} taskSort={taskSort} />
-
+          <SearchBlock />
           <TableBody
             themes={themes}
             performers={performers}
