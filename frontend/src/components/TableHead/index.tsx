@@ -2,7 +2,10 @@ import { SortName, SortType } from "../../types";
 import "./TableHead.scss";
 import TableHeadItem from "./TableHeadItem";
 
-const TableHead = ({ setTaskSort, taskSort }: { setTaskSort: any, taskSort: SortType }) => {
+interface Props { setTaskSort: any, taskSort: SortType, isOpenSearch: boolean }
+
+
+const TableHead = ({ setTaskSort, taskSort, isOpenSearch }: Props) => {
   const tableHeadArray: { title: string, sort: { hasSort: boolean, sortName?: SortName } }[] = [
     {
       title: 'Тема',
@@ -48,7 +51,7 @@ const TableHead = ({ setTaskSort, taskSort }: { setTaskSort: any, taskSort: Sort
   ]
   return (
     <thead className="table__head">
-      <tr className="table__head-row">
+      <tr className={`table__head-row ${isOpenSearch ? 'table__head-row_searchOpen' : ''}`}>
         {
           tableHeadArray.map((tableHeadArrayItem, index) => (
             <TableHeadItem

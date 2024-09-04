@@ -7,6 +7,12 @@
     color: #000;
     @include table-config;
     margin-bottom: 20px;
+    transition: margin-bottom ease-in-out 0.2s;
+  }
+
+  &-row_searchOpen {
+    margin-bottom: 75px;
+    transition: margin-bottom ease-in-out 0.2s;
   }
 
   &-ceil {
@@ -36,16 +42,19 @@
     right: 7px;
     transition: background-color 0.2s ease-in-out;
     border-radius: 50%;
+
     &:hover {
       background-color: #6f6d7224;
       transition: background-color 0.2s ease-in-out;
     }
+
     .icon-wrapper {
       position: absolute;
       top: 13px;
       left: 0;
       bottom: 0;
       right: -10px;
+
       .moveDown-icon {
         position: absolute;
         top: -9px;

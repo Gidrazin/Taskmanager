@@ -37,6 +37,8 @@ function App() {
 
   const [taskSort, setTaskSort] = useState<SortType>(null)
 
+  const [isOpenSearch, setIsOpenSearch] = useState(false)
+
   const openNotification = (type: "success" | "error", text: string) => {
     api[type]({
       message: text,
@@ -123,26 +125,35 @@ function App() {
       <main className="main">
         {appForm}
         <FilterBlock
+
           announcedFilter={announcedFilter}
           doneFilter={doneFilter}
           inProgressFilter={inProgressFilter}
+
           setAnnouncedFilter={setAnnouncedFilter}
           setDoneFilter={setDoneFilter}
           setInProgressFilter={setInProgressFilter}
+
+          setIsOpenSearch={setIsOpenSearch}
+          isOpenSearch={isOpenSearch}
+
         />
-        <table className="table">
-          <TableHead setTaskSort={setTaskSort} taskSort={taskSort} />
-          <SearchBlock />
-          <TableBody
-            themes={themes}
-            performers={performers}
-            openNotification={openNotification}
-            setAppForm={setAppForm}
-            tasks={filteredTasks}
-            tasksStartRender={tasksStartRender}
-            sizePageValue={sizePageValue}
-          />
-        </table>
+        <div className="table-wrapper">
+          <SearchBlock isOpen={isOpenSearch} />
+          <table className="table">
+            <TableHead setTaskSort={setTaskSort} taskSort={taskSort} isOpenSearch={isOpenSearch} />
+            <TableBody
+              themes={themes}
+              performers={performers}
+              openNotification={openNotification}
+              setAppForm={setAppForm}
+              tasks={filteredTasks}
+              tasksStartRender={tasksStartRender}
+              sizePageValue={sizePageValue}
+            />
+          </table>
+        </div>
+        
 
         <PaginationBlock
           tasksCount={filteredTasks.length}

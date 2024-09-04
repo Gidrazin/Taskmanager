@@ -8,7 +8,9 @@ interface Props {
   inProgressFilter: boolean
   setDoneFilter: any
   setAnnouncedFilter: any
-  setInProgressFilter: any
+  setInProgressFilter: any,
+  setIsOpenSearch: any,
+  isOpenSearch: boolean
 }
 
 const FilterBlock = ({
@@ -17,7 +19,9 @@ const FilterBlock = ({
   inProgressFilter,
   setDoneFilter,
   setAnnouncedFilter,
-  setInProgressFilter
+  setInProgressFilter,
+  setIsOpenSearch,
+  isOpenSearch
 }: Props) => {
   return (
     <div className="filterBlock">
@@ -42,7 +46,10 @@ const FilterBlock = ({
             />
           </div>
           <span className="decor-line"></span>
-          <button className="filterBlock__searchBtn">
+          <button onClick={() => {
+            setIsOpenSearch(!isOpenSearch)
+          }
+          } className="filterBlock__searchBtn">
             <Search color="#0e1c49" size={30} />
           </button>
         </div>

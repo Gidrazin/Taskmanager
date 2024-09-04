@@ -2,9 +2,13 @@ import SearchBlockItem from "./SearchBlockItem"
 import { ConfigProvider } from "antd"
 import "./SearchBlock.scss"
 
-const SearchBlock = () => {
+interface Props {
+  isOpen: boolean
+}
+
+const SearchBlock = ({isOpen}: Props) => {
   return (
-    <div className="search-list">
+    <div className={`search-list ${isOpen ? 'isOpen': ''}`}>
       <ConfigProvider
         theme={{
           components: {
