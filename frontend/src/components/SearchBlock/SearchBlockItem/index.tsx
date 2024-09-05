@@ -1,4 +1,5 @@
 import { DatePicker, Input, InputNumber, Tooltip } from "antd"
+import locale from "antd/es/date-picker/locale/ru_RU";
 
 interface Props {
   isDisabled: boolean
@@ -24,9 +25,9 @@ const SearchBlockItem = ({ isDisabled, type }: Props) => {
           (
             isDisabled ?
               <Tooltip title="Поиск не доступен">
-                <InputNumber min={0} disabled={isDisabled} placeholder="Поиск" size="small" width={'100%'} className="search-item__input" />
+                <InputNumber type="number" min={0} disabled={isDisabled} placeholder="Поиск" size="small" width={'100%'} className="search-item__input" />
               </Tooltip> :
-              <InputNumber min={0} disabled={isDisabled} placeholder="Поиск" size="small" width={'100%'} className="search-item__input" />
+              <InputNumber type="number" min={0} disabled={isDisabled} placeholder="Поиск" size="small" width={'100%'} className="search-item__input" />
           )
         }
         {
@@ -34,9 +35,9 @@ const SearchBlockItem = ({ isDisabled, type }: Props) => {
           (
             isDisabled ?
               <Tooltip title="Поиск не доступен">
-                <DatePicker disabled={isDisabled} placeholder="Поиск" size="small"  width={'100%'} className="search-item__input" />
+                <DatePicker disabled={isDisabled} placeholder="Поиск" size="small" width={'100%'} className="search-item__input" locale={locale} format="DD-MM-YYYY" />
               </Tooltip> :
-              <DatePicker disabled={isDisabled} placeholder="Поиск" size="small"  width={'100%'} className="search-item__input" />
+              <DatePicker disabled={isDisabled} placeholder="Поиск" size="small" width={'100%'} className="search-item__input" locale={locale} format="DD-MM-YYYY" />
           )
         }
       </div>
