@@ -28,3 +28,14 @@ export type SortDirection = 'up' | 'down'
 export type SortType = { sortName: SortName, sortDirection: SortDirection } | null
 
 export type Status = "done" | "announced" | "in progress";
+
+export type SearchType = {
+
+  theme: string,
+  title: string,
+  username: string,
+  end: string,
+  report: string,
+  pages: number | null
+
+}

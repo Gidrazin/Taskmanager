@@ -1,12 +1,15 @@
 import SearchBlockItem from "./SearchBlockItem"
 import { ConfigProvider } from "antd"
 import "./SearchBlock.scss"
+import { SearchType } from "../../types"
 
 interface Props {
   isOpen: boolean
+  searchState: SearchType,
+  setSearchState: any
 }
 
-const SearchBlock = ({isOpen}: Props) => {
+const SearchBlock = ({isOpen, searchState, setSearchState}: Props) => {
   return (
     <div className={`search-list ${isOpen ? 'isOpen': ''}`}>
       <ConfigProvider
@@ -29,12 +32,12 @@ const SearchBlock = ({isOpen}: Props) => {
           },
         }}
       >
-        <SearchBlockItem type={'text'} isDisabled={false} />
-        <SearchBlockItem type={'text'} isDisabled={false} />
-        <SearchBlockItem type={'text'} isDisabled={false} />
-        <SearchBlockItem type={'date'} isDisabled={false} />
-        <SearchBlockItem type={'text'} isDisabled={false} />
-        <SearchBlockItem type={'number'} isDisabled={false} />
+        <SearchBlockItem searchState={searchState} setSearchState={setSearchState} type={'text'} isDisabled={false} />
+        <SearchBlockItem searchState={searchState} setSearchState={setSearchState} type={'text'} isDisabled={false} />
+        <SearchBlockItem searchState={searchState} setSearchState={setSearchState} type={'text'} isDisabled={false} />
+        <SearchBlockItem searchState={searchState} setSearchState={setSearchState} type={'date'} isDisabled={false} />
+        <SearchBlockItem searchState={searchState} setSearchState={setSearchState} type={'text'} isDisabled={false} />
+        <SearchBlockItem searchState={searchState} setSearchState={setSearchState} type={'number'} isDisabled={false} />
       </ConfigProvider>
 
     </div>

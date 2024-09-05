@@ -1,12 +1,17 @@
 import { DatePicker, Input, InputNumber, Tooltip } from "antd"
 import locale from "antd/es/date-picker/locale/ru_RU";
+import { SearchType } from "../../../types"
+
+
 
 interface Props {
   isDisabled: boolean
   type: 'text' | 'number' | 'date'
+  searchState: SearchType,
+  setSearchState: any
 }
 
-const SearchBlockItem = ({ isDisabled, type }: Props) => {
+const SearchBlockItem = ({ isDisabled, type, searchState, setSearchState }: Props) => {
   return (
     <div className="search-item">
       <div className="input-wrapper">

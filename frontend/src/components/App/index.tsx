@@ -39,6 +39,15 @@ function App() {
 
   const [isOpenSearch, setIsOpenSearch] = useState(false)
 
+  const [searchState, setSearchState] = useState({
+    theme: '',
+    title: '',
+    username: '',
+    end: '',
+    report: '',
+    pages: null
+  })
+
   const openNotification = (type: "success" | "error", text: string) => {
     api[type]({
       message: text,
@@ -139,7 +148,7 @@ function App() {
 
         />
         <div className="table-wrapper">
-          <SearchBlock isOpen={isOpenSearch} />
+          <SearchBlock isOpen={isOpenSearch} searchState={searchState} setSearchState={setSearchState} />
           <table className="table">
             <TableHead setTaskSort={setTaskSort} taskSort={taskSort} isOpenSearch={isOpenSearch} />
             <TableBody
@@ -153,7 +162,7 @@ function App() {
             />
           </table>
         </div>
-        
+
 
         <PaginationBlock
           tasksCount={filteredTasks.length}
