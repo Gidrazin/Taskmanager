@@ -2,7 +2,7 @@ import "./App.scss";
 
 import { useState, useEffect } from "react";
 import { getTasks, getThemes, getPerformers } from "../../api";
-import { Performer, Task, Theme, SortType } from "../../types";
+import { Performer, Task, Theme, SortType, SearchType } from "../../types";
 
 import TableBody from "../TableBody";
 import TableHead from "../TableHead";
@@ -39,15 +39,16 @@ function App() {
 
   const [isOpenSearch, setIsOpenSearch] = useState(false)
 
-  const [searchState, setSearchState] = useState({
+  const [searchState, setSearchState] = useState<SearchType>({
     theme: '',
     title: '',
     username: '',
     end: '',
     report: '',
     pages: null
-  })
-
+  });
+  console.log(searchState);
+  
   const openNotification = (type: "success" | "error", text: string) => {
     api[type]({
       message: text,

@@ -1,17 +1,14 @@
-import { DatePicker, Input, InputNumber, Tooltip } from "antd"
+import { DatePicker, Input, InputNumber, Tooltip } from "antd";
 import locale from "antd/es/date-picker/locale/ru_RU";
-import { SearchType } from "../../../types"
-
-
 
 interface Props {
-  isDisabled: boolean
-  type: 'text' | 'number' | 'date'
-  searchState: SearchType,
-  setSearchState: any
+  isDisabled: boolean;
+  type: 'text' | 'number' | 'date';
+  onChangeFunc: React.ChangeEventHandler<HTMLInputElement>;
+  inputValue: string;
 }
 
-const SearchBlockItem = ({ isDisabled, type, searchState, setSearchState }: Props) => {
+const SearchBlockItem = ({ isDisabled, type, onChangeFunc, inputValue }: Props) => {
   return (
     <div className="search-item">
       <div className="input-wrapper">
@@ -22,7 +19,7 @@ const SearchBlockItem = ({ isDisabled, type, searchState, setSearchState }: Prop
               <Tooltip title="Поиск не доступен">
                 <Input disabled={isDisabled} placeholder="Поиск" size="small" width={'100%'} className="search-item__input" />
               </Tooltip> :
-              <Input disabled={isDisabled} placeholder="Поиск" size="small" width={'100%'} className="search-item__input" />
+              <Input onChange={(e) => { onChangeFunc(e); }} value={inputValue} disabled={isDisabled} placeholder="Поиск" size="small" width={'100%'} className="search-item__input" />
           )
         }
         {
@@ -47,7 +44,7 @@ const SearchBlockItem = ({ isDisabled, type, searchState, setSearchState }: Prop
         }
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default SearchBlockItem
+export default SearchBlockItem;

@@ -24,7 +24,7 @@
 
 .search-item {
   position: relative;
-  padding: 7px 0;
+  // padding: 7px 0;
   display: flex;
   justify-content: center;
 
@@ -65,7 +65,7 @@
     text-transform: uppercase;
     text-align: center;
     width: 100%;
-
+    padding: 7px 0;
     &::placeholder {
       text-align: center;
       text-transform: uppercase !important;
