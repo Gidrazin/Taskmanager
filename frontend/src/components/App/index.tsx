@@ -18,7 +18,7 @@ import FilterBlock from "../FilterBlock";
 
 function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
-  const [filteredTasks, setFilteredTasks] = useState<Task[]>([])
+  const [filteredTasks, setFilteredTasks] = useState<Task[]>([]);
 
   const [themes, setThemes] = useState<Theme[]>([]);
   const [performers, setPerformers] = useState<Performer[]>([]);
@@ -27,17 +27,17 @@ function App() {
 
   const [appForm, setAppForm] = useState(<></>);
 
-  const [sizePageValue, setSizePageValue] = useState(10)
+  const [sizePageValue, setSizePageValue] = useState(10);
 
   const [api, contextHolder] = notification.useNotification();
 
-  const [doneFilter, setDoneFilter] = useState(true)
-  const [announcedFilter, setAnnouncedFilter] = useState(true)
-  const [inProgressFilter, setInProgressFilter] = useState(true)
+  const [doneFilter, setDoneFilter] = useState(true);
+  const [announcedFilter, setAnnouncedFilter] = useState(true);
+  const [inProgressFilter, setInProgressFilter] = useState(true);
 
-  const [taskSort, setTaskSort] = useState<SortType>(null)
+  const [taskSort, setTaskSort] = useState<SortType>(null);
 
-  const [isOpenSearch, setIsOpenSearch] = useState(false)
+  const [isOpenSearch, setIsOpenSearch] = useState(false);
 
   const [searchState, setSearchState] = useState<SearchType>({
     theme: '',
@@ -45,10 +45,9 @@ function App() {
     username: '',
     end: '',
     report: '',
-    pages: null
+    pages: ''
   });
-  console.log(searchState);
-  
+
   const openNotification = (type: "success" | "error", text: string) => {
     api[type]({
       message: text,
@@ -71,46 +70,46 @@ function App() {
   }, [appForm]);
 
   useEffect(() => {
-    const filterArray: string[] = []
+    const filterArray: string[] = [];
 
     doneFilter
       ? filterArray.push('done')
-      : filterArray.splice(1, filterArray.findIndex((status) => status === 'done'))
+      : filterArray.splice(1, filterArray.findIndex((status) => status === 'done'));
 
     announcedFilter
       ? filterArray.push('announced')
-      : filterArray.splice(1, filterArray.findIndex((status) => status === 'announced'))
+      : filterArray.splice(1, filterArray.findIndex((status) => status === 'announced'));
 
     inProgressFilter
       ? filterArray.push('inProgress')
-      : filterArray.splice(1, filterArray.findIndex((status) => status === 'inProgress'))
+      : filterArray.splice(1, filterArray.findIndex((status) => status === 'inProgress'));
 
-    const filteredTasks = getTaskByStatus(tasks, filterArray)
+    const filteredTasks = getTaskByStatus(tasks, filterArray);
 
-    let sortedTasks: Task[] = []
+    let sortedTasks: Task[] = [];
 
     switch (taskSort?.sortName) {
       case 'theme':
-        sortedTasks = themeSortFunc(filteredTasks, taskSort.sortDirection)
+        sortedTasks = themeSortFunc(filteredTasks, taskSort.sortDirection);
         break;
       case 'title':
-        sortedTasks = titleSortFunc(filteredTasks, taskSort.sortDirection)
+        sortedTasks = titleSortFunc(filteredTasks, taskSort.sortDirection);
         break;
       case 'username':
-        sortedTasks = usernameSortFunc(filteredTasks, taskSort.sortDirection)
+        sortedTasks = usernameSortFunc(filteredTasks, taskSort.sortDirection);
         break;
       case 'end':
-        sortedTasks = endSortFunc(filteredTasks, taskSort.sortDirection)
+        sortedTasks = endSortFunc(filteredTasks, taskSort.sortDirection);
         break;
       case 'pages':
-        sortedTasks = pagesSortFunc(filteredTasks, taskSort.sortDirection)
+        sortedTasks = pagesSortFunc(filteredTasks, taskSort.sortDirection);
         break;
       default:
-        sortedTasks = [...filteredTasks]
+        sortedTasks = [...filteredTasks];
     }
 
-    setFilteredTasks(sortedTasks)
-  }, [tasks, doneFilter, announcedFilter, inProgressFilter, taskSort])
+    setFilteredTasks(sortedTasks);
+  }, [tasks, doneFilter, announcedFilter, inProgressFilter, taskSort]);
 
   return (
     <div className="App">

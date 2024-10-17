@@ -1,8 +1,7 @@
 import SearchBlockItem from "./SearchBlockItem";
-import { ConfigProvider, theme } from "antd";
+import { ConfigProvider } from "antd";
 import "./SearchBlock.scss";
-import { SearchType } from "../../types";
-import { title } from "process";
+import { SearchItemsType, SearchType } from "../../types";
 
 interface Props {
   isOpen: boolean;
@@ -11,6 +10,40 @@ interface Props {
 }
 
 const SearchBlock = ({ isOpen, searchState, setSearchState }: Props) => {
+
+  const searchItems: SearchItemsType = [
+    {
+      field: 'theme',
+      type: 'text',
+      isDisabled: false
+    },
+    {
+      field: 'title',
+      type: 'text',
+      isDisabled: true
+    },
+    {
+      field: 'username',
+      type: 'text',
+      isDisabled: false
+    },
+    {
+      field: 'end',
+      type: 'date',
+      isDisabled: false
+    },
+    {
+      field: 'report',
+      type: 'text',
+      isDisabled: true
+    },
+    {
+      field: 'pages',
+      type: 'number',
+      isDisabled: true
+    }
+  ];
+
   return (
     <div className={`search-list ${isOpen ? 'isOpen' : ''}`}>
       <ConfigProvider
@@ -33,66 +66,28 @@ const SearchBlock = ({ isOpen, searchState, setSearchState }: Props) => {
           },
         }}
       >
-        <SearchBlockItem
-          onChangeFunc={(e) => {
-            setSearchState((prev: SearchType) => {
-              return {
-                ...prev,
-                theme: e.target.value
-              };
-            });
-          }}
-          inputValue={searchState.theme}
-          type={'text'}
-          isDisabled={false}
-        />
-        <SearchBlockItem
-          onChangeFunc={(e) => {
-            setSearchState((prev: SearchType) => {
-              return {
-                ...prev,
-                title: e.target.value
-              };
-            });
-          }}
-          inputValue={searchState.title}
-          type={'text'}
-          isDisabled={false}
-        />
-        <SearchBlockItem
-          onChangeFunc={(e) => {
-            setSearchState((prev: SearchType) => {
-              return {
-                ...prev,
-                username: e.target.value
-              };
-            });
-          }}
-
-          inputValue={searchState.username}
-          type={'text'}
-          isDisabled={false}
-        />
-        {/* <SearchBlockItem searchState={searchState} setSearchState={setSearchState} type={'date'} isDisabled={false} /> */}
-        <SearchBlockItem
-          onChangeFunc={(e) => {
-            setSearchState((prev: SearchType) => {
-              return {
-                ...prev,
-                report: e.target.value
-              };
-            });
-          }}
-
-          inputValue={searchState.report}
-          type={'text'}
-          isDisabled={false}
-        />
-        {/* <SearchBlockItem searchState={searchState} setSearchState={setSearchState} type={'number'} isDisabled={false} />  */}
+        {
+          searchItems.map((item) => (
+            <SearchBlockItem
+              key={item.field}
+              onChangeFunc={(value) => {
+                setSearchState((prev: SearchType) => {
+                  return {
+                    ...prev,
+                    [item.field]: value
+                  };
+                });
+              }
+              }
+              inputValue={searchState[item.field]}
+              type={item.type}
+              isDisabled={item.isDisabled}
+            />
+          )
+          )
+        }
       </ConfigProvider>
-
     </div>
-
   );
 };
 

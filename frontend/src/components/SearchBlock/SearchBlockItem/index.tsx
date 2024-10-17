@@ -1,10 +1,12 @@
 import { DatePicker, Input, InputNumber, Tooltip } from "antd";
 import locale from "antd/es/date-picker/locale/ru_RU";
+import dayjs from "dayjs";
+import { SearchFieldType } from "../../../types";
 
 interface Props {
   isDisabled: boolean;
-  type: 'text' | 'number' | 'date';
-  onChangeFunc: React.ChangeEventHandler<HTMLInputElement>;
+  type: SearchFieldType;
+  onChangeFunc: (value: string) => void;
   inputValue: string;
 }
 
@@ -19,7 +21,7 @@ const SearchBlockItem = ({ isDisabled, type, onChangeFunc, inputValue }: Props) 
               <Tooltip title="Поиск не доступен">
                 <Input disabled={isDisabled} placeholder="Поиск" size="small" width={'100%'} className="search-item__input" />
               </Tooltip> :
-              <Input onChange={(e) => { onChangeFunc(e); }} value={inputValue} disabled={isDisabled} placeholder="Поиск" size="small" width={'100%'} className="search-item__input" />
+              <Input onChange={(e) => { onChangeFunc(e.target.value); }} value={inputValue ? inputValue : ''} disabled={isDisabled} placeholder="Поиск" size="small" width={'100%'} className="search-item__input" />
           )
         }
         {
@@ -29,7 +31,13 @@ const SearchBlockItem = ({ isDisabled, type, onChangeFunc, inputValue }: Props) 
               <Tooltip title="Поиск не доступен">
                 <InputNumber type="number" min={0} disabled={isDisabled} placeholder="Поиск" size="small" width={'100%'} className="search-item__input" />
               </Tooltip> :
-              <InputNumber type="number" min={0} disabled={isDisabled} placeholder="Поиск" size="small" width={'100%'} className="search-item__input" />
+              <InputNumber onChange={(value) => {
+                if (value) {
+                  onChangeFunc(String(value));
+                } else {
+                  onChangeFunc('');
+                }
+              }} value={inputValue === '' ? null : +inputValue} type="number" min={0} disabled={isDisabled} placeholder="Поиск" size="small" width={'100%'} className="search-item__input" />
           )
         }
         {
@@ -39,7 +47,17 @@ const SearchBlockItem = ({ isDisabled, type, onChangeFunc, inputValue }: Props) 
               <Tooltip title="Поиск не доступен">
                 <DatePicker disabled={isDisabled} placeholder="Поиск" size="small" width={'100%'} className="search-item__input" locale={locale} format="DD-MM-YYYY" />
               </Tooltip> :
-              <DatePicker disabled={isDisabled} placeholder="Поиск" size="small" width={'100%'} className="search-item__input" locale={locale} format="DD-MM-YYYY" />
+              <DatePicker onChange={(date) => {
+                if (!date) {
+                  onChangeFunc('');
+                } else {
+                  const d = dayjs(date).date() < 10 ? '0' + String(dayjs(date).date()) : dayjs(date).date();
+                  const m = (dayjs(date).month() + 1) < 10 ? '0' + String(dayjs(date).month() + 1) : dayjs(date).month() + 1;
+                  const y = String(dayjs(date).year());
+                  onChangeFunc(`${d} ${m} ${y}`);
+                }
+
+              }} disabled={isDisabled} placeholder="Поиск" size="small" width={'100%'} className="search-item__input" locale={locale} format="DD-MM-YYYY" />
           )
         }
       </div>
