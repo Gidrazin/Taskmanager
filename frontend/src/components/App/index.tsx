@@ -70,6 +70,14 @@ function App() {
   }, [appForm]);
 
   useEffect(() => {
+    const getData = async () => {
+      const tasksRes = await getTasks(searchState.theme, searchState.username, searchState.end, searchState.title, searchState.report, searchState.pages);
+      setTasks(tasksRes);
+    };
+    getData();
+  }, [searchState]);
+
+  useEffect(() => {
     const filterArray: string[] = [];
 
     doneFilter

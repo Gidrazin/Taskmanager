@@ -4,9 +4,7 @@ export async function getTasks(
   theme = "",
   performer = "",
   end = "",
-  start = "",
   title = "",
-  duration = "",
   report = "",
   pages = ""
 ) {
