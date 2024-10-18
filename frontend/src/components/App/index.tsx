@@ -37,7 +37,11 @@ function App() {
 
   const [taskSort, setTaskSort] = useState<SortType>(null);
 
-  const [isOpenSearch, setIsOpenSearch] = useState(false);
+  const [openSearchState, setOpenSearchState] = useState({
+    isOpen: false,
+    isSearchStateNotEmpty: false
+  });
+  console.log(openSearchState);
 
   const [searchState, setSearchState] = useState<SearchType>({
     theme: '',
@@ -75,6 +79,9 @@ function App() {
       setTasks(tasksRes);
     };
     getData();
+    setOpenSearchState((prev) => ({
+      ...prev, isSearchStateNotEmpty: Object.values(searchState).some((str) => str.length !== 0)
+    }))
   }, [searchState]);
 
   useEffect(() => {
@@ -151,14 +158,14 @@ function App() {
           setDoneFilter={setDoneFilter}
           setInProgressFilter={setInProgressFilter}
 
-          setIsOpenSearch={setIsOpenSearch}
-          isOpenSearch={isOpenSearch}
+          setOpenSearchState={setOpenSearchState}
+          openSearchState={openSearchState}
 
         />
         <div className="table-wrapper">
-          <SearchBlock isOpen={isOpenSearch} searchState={searchState} setSearchState={setSearchState} />
+          <SearchBlock isOpen={openSearchState.isOpen} searchState={searchState} setSearchState={setSearchState} />
           <table className="table">
-            <TableHead setTaskSort={setTaskSort} taskSort={taskSort} isOpenSearch={isOpenSearch} />
+            <TableHead setTaskSort={setTaskSort} taskSort={taskSort} isOpenSearch={openSearchState.isOpen} />
             <TableBody
               themes={themes}
               performers={performers}
