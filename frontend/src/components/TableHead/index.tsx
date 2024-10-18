@@ -22,7 +22,7 @@ const TableHead = ({ setTaskSort, taskSort, isOpenSearch }: Props) => {
       }
     },
     {
-      title: 'ФИО',
+      title: 'Исполнитель',
       sort: {
         hasSort: true,
         sortName: 'username'
