@@ -14,17 +14,17 @@ const FilterCheckbox = ({
 }: Props) => {
   const typeObject = {
     'done': {
-      baseImg: '/images/hex-done-filter.svg',
-      checkImg: '/images/check-icon-blue.svg'
+      baseImg: process.env.PUBLIC_URL + '/images/hex-done-filter.svg',
+      checkImg: process.env.PUBLIC_URL + '/images/check-icon-blue.svg'
     },
     'announced':
     {
-      baseImg: '/images/hex-announced-filter.svg',
-      checkImg: '/images/check-icon-white.svg'
+      baseImg: process.env.PUBLIC_URL + '/images/hex-announced-filter.svg',
+      checkImg: process.env.PUBLIC_URL + '/images/check-icon-white.svg'
     },
     'inProgress': {
-      baseImg: ' /images/hex-inProgress-filter.svg',
-      checkImg: '/images/check-icon-white.svg'
+      baseImg: process.env.PUBLIC_URL + '/images/hex-inProgress-filter.svg',
+      checkImg: process.env.PUBLIC_URL + '/images/check-icon-white.svg'
     }
   }
   return (
